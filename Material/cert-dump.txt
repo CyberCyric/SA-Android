@@ -1,0 +1,14 @@
+Signature matches Public Key
+Root Certificate: Subject matches Issuer
+Key Id Hash(rfc-sha1): 861d728969a2afcb08a88851a990c972713af820
+Key Id Hash(sha1): 5db3ed93f38808e003e204b7935fd69c334fad8c
+Key Id Hash(bcrypt-sha1): 25d357aecc3a99e0b238c50531bfaabeda2f26f9
+Key Id Hash(bcrypt-sha256): f21af6005bb4faae235e1a13a35012bb2dd5ab72ea1279ffc50bb39faf2a0399
+Key Id Hash(md5): 443d4360852cf8aa51cf0a537c7a6ce8
+Key Id Hash(sha256): 19044f853fd313a6b41f31c3e80fd45f8bd0ad35d742e7ce6287ee5b46782304
+Key Id Hash(pin-sha256): JmrXoYYILYBvR5kKyawi5DDGBDp0nnHDsVf0dtdDzh0=
+Key Id Hash(pin-sha256-hex): 266ad7a186082d806f47990ac9ac22e430c6043a749e71c3b157f476d743ce1d
+Cert Hash(md5): 0229b33af3be3b464f4791b35856fded
+Cert Hash(sha1): 6b2b1efac7b5aab1865a6236db51fbdb6d9079a9
+Cert Hash(sha256): df86ddcc0b7694fe08066d1e9ac6ce1befc00570d8445f3501cf70ad66b61c8b
+Signature Hash: 0c4b5841b78227880c892f17f61a3bb9a03ae1a826b20ea7d250649da31bfb74

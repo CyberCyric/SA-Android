@@ -1,0 +1,63 @@
+--
+-- For more information on build.settings, see the Project Build Settings guide at:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings
+--
+
+settings =
+{
+	orientation =
+	{
+		-- Supported values for orientation:
+		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+		default = "landscapeRight",
+		supported = { "landscapeRight", "landscapeLeft"},
+	},
+
+	--
+	-- Android section
+	--
+	android =
+	{
+	 	googlePlayGamesAppId = "484594170007",
+		usesPermissions =
+		{
+			"com.android.vending.CHECK_LICENSE",
+			"android.permission.INTERNET",
+		},
+	},
+
+	--
+	-- Windows section
+	--
+	win32 =
+    {
+ 		preferenceStorage = "sqlite",
+ 		singleInstance = true,
+    },
+    window =
+    {
+        defaultMode = "fullscreen",
+        enableMaximizeButton = true,
+    },
+
+	--
+	-- Plugins section
+	--
+	plugins =
+	{
+	  ["plugin.gpgs.v2"] = {
+	            publisherId = "com.coronalabs",
+	            supportedPlatforms = {["android"] = true, ["android-kindle"] = true}
+	  },
+ 	},
+
+	--
+	-- Project section
+	--
+	excludeFiles =
+	{
+		-- Exclude unnecessary files for each platform
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		android = { "LaunchScreen.storyboardc", },
+	},
+}
