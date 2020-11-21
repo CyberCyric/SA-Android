@@ -40,7 +40,7 @@ function scene:create( event )
     logoAAImage.y = display.contentHeight / 2
     utils.fitImage(logoAAImage, display.contentWidth, display.contentHeight, false)
     sceneGroup:insert( logoAAImage )
-    local txtActualizando = display.newText( "Buscando actualizaciones...",  centerX, centerY + 70, "FjallaOne-Regular", 14 )
+    local txtActualizando = display.newText( "Juegos educativos",  centerX, centerY + 70, "FjallaOne-Regular", 14 )
     txtActualizando:setFillColor( 0, 0, 0 )
     sceneGroup:insert( txtActualizando )
 

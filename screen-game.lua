@@ -30,11 +30,8 @@ local countDownTimer
 local activeCardGroup = display.newGroup()
 local timelineGroup = display.newGroup()
 local gameoverGroup = display.newGroup()
-
-if ( platform == "android" and env ~= "simulator" ) then
-    globalData.gpgs = require( "plugin.gpgs.v2" )
-    print("gpgs plugin started")
-end
+local unlockedCardGroup = display.newGroup()
+local adGroup = display.newGroup()
 
 local soundTable = {
     startSound = audio.loadSound( "Audio/start.mp3" ),
@@ -68,22 +65,6 @@ if ( licensingInit == true ) then
 end
 
 end 
-
--- Google Play Games Services initialization/login listener
-local function gpgsInitListener( event )
-
-    if not event.isError then
-        if ( event.name == "init" ) then  -- Initialization event
-            -- print("INIT")
-            -- Attempt to log in the user
-            globalData.gpgs.login( { userInitiated=true, listener=gpgsInitListener } )
-        elseif ( event.name == "login" ) then  -- Successful login event            
-            -- print("LOGIN")
-        end
-    else
-        print("ERROR "..event.errorCode..": "..event.errorMessage)
-    end    
-end
  
 -- ------------------------------------------------------------------------------------
 -- ELIMINAR!!
@@ -132,34 +113,51 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
     totalCartas = composer.getVariable("timelineSize") - 1
     hs = composer.getVariable("highscore")
 
+    local banderaIzq = display.newImage( "Images/bandera-izquierda.png", totalWidth - 20, 30 )
+    banderaIzq.x = leftSide + 40
+    banderaIzq.anchorX = 0
+    banderaIzq.y = topSide + 60
+    utils.fitImage(banderaIzq, 80, 80, true) 
+    gameoverGroup:insert( banderaIzq )
+
+    local banderaDer = display.newImage( "Images/bandera-derecha.png", totalWidth - 20, 30 )
+    banderaDer.x = rightSide - 40
+    banderaDer.anchorX = 1
+    banderaDer.y = topSide + 60
+    utils.fitImage(banderaDer, 80, 80, true) 
+    gameoverGroup:insert( banderaDer )
+
     if (isDeckEmpty) then 
-        boxGameOverText.text = "¡ Juego terminado !"
-        boxGameOverSubtext.text =  "Colocaste correctamente "..totalCartas.." cartas. " 
+        boxGameOverText.text = "¡Juego terminado!"
+        boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. " 
         if (totalCartas > tonumber(hs) ) then
-            boxGameOverSubtext2.text = "( ¡Es tu nuevo récord! )"
+            boxGameOverSubtext.text = boxGameOverSubtext.text.." (¡Es tu nuevo récord!)"
         else
-            boxGameOverSubtext2.text = "( Tu récord es de "..composer.getVariable("highscore")..")."
+            boxGameOverSubtext.text = boxGameOverSubtext.text.." (Tu récord es de "..composer.getVariable("highscore")..")."
         end
     elseif (isTimerEmpty) then
        boxGameOverText.text = "¡Se terminó el tiempo!"
        boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. " 
         if (totalCartas > tonumber(hs) ) then
-            boxGameOverSubtext.text = boxGameOverSubtext.text.."¡Es tu nuevo récord personal!"
+            boxGameOverSubtext.text = boxGameOverSubtext.text.." (¡Es tu nuevo récord!)"
         else
-            boxGameOverSubtext.text = boxGameOverSubtext.text.."( Tu récord personal es de "..composer.getVariable("highscore").." )."
+            boxGameOverSubtext.text = boxGameOverSubtext.text.." (Tu récord personal es de "..composer.getVariable("highscore")..")."
         end
     else
          boxGameOverText.text = "¡Acertaste todas las cartas!"
-         boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. ( Tu récord personal es de "..composer.getVariable("highscore").." )."
+         boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. (Tu récord es de "..composer.getVariable("highscore").." )."
     end    
+
+    boxGameOverText.x = leftSide + 300
+    boxGameOverText.y = 50
+    boxGameOverSubtext.x = leftSide + 300
+    boxGameOverSubtext.y = 75
 
     -- Compruebo si unlockea alguna carta
     math.randomseed(os.time())
     local rnd = math.random(1,100)
 
     if (rnd <= #timeline * 3) then
-        boxGameOverText.y = 50
-        boxGameOverSubtext.y = 80 
         -- Obtengo una carta Locked al azar y la Unlockeo
         path = system.pathForFile( "data.db", system.DocumentsDirectory )
         db = sqlite3.open( path )
@@ -172,36 +170,40 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
         end
         
         if (i > 0) then
+            print("Unlockeo:"..carta.title) 
             unlockedCardBox.isVisible = true
             boxGameOverUnlockedSubtext.text = "'"..carta.title.."' fue agregada a tu colección."
-            unlockedCard = utils.swapImage(unlockedCard, "Images/Cartas/"..carta.image,90, 125, gameoverGroup, 0 )
+            unlockedCard = utils.swapImage(unlockedCard, "Images/Cartas/"..carta.image, 50, 70, unlockedCardGroup, 0 )
             unlockedCard:setStrokeColor( 0.58, 0.53, 0.4)
             unlockedCard.strokeWidth = 5
             boxGameOverUnlockedText.isVisible = true
             boxGameOverUnlockedSubtext.isVisible = true
             unlockedCard.isVisible = true
+            unlockedCardGroup.isVisible = true
 
             path = system.pathForFile( "data.db", system.DocumentsDirectory )
             db = sqlite3.open( path )
             SQL = "UPDATE cartas SET unlocked='Y' WHERE carta_id="..carta.carta_id
             db:exec( SQL )
             if db:errcode() then
-                print(db:errcode(), db:errmsg())
+                -- print(db:errcode(), db:errmsg())
             end
         else
             boxGameOverUnlockedText.isVisible = false
             boxGameOverUnlockedSubtext.isVisible = false
             unlockedCard.isVisible = false
+            unlockedCardGroup.isVisible = false
         end
         db:close()
     else  
-        -- Unlockeo cartas
+        -- No unlockeo cartas
         unlockedCardBox.isVisible = false
-        boxGameOverText.y = 80
-        boxGameOverSubtext.y = 120 
+        boxGameOverSubtext.y = 75 
         boxGameOverUnlockedText.isVisible = false
         boxGameOverUnlockedSubtext.isVisible = false
         unlockedCard.isVisible = false
+        adText.isVisible = true
+        adGroup.isVisible = true
     end
     gameoverGroup.isVisible = true
 end
@@ -376,21 +378,38 @@ drawTableau =  function()
     -- Display the first Arrow Down
     if (#timeline > 1 and timelineIndex >1 and gameInProgress == true) then
         tableauArrow1.isVisible = true
+        tableauInnerArrow1.isVisible = true
+        tableauArrowText1.isVisible = true
+        tableauArrowText1.text = "A"
     else
         tableauArrow1.isVisible = false
+        tableauInnerArrow1.isVisible = false
+        tableauArrowText1.isVisible = false
     end
     
     -- Display the last Arrow Down
     if (#timeline > 1 and timelineIndex < #timeline and gameInProgress == true) then
         tableauArrow4.isVisible = true
+        tableauInnerArrow4.isVisible = true
+        tableauArrowText4.isVisible = true
+        tableauArrowText4.text = "D"
     else
         tableauArrow4.isVisible = false
+        tableauInnerArrow4.isVisible = false
+        tableauArrowText4.isVisible = false
     end
 
     -- Display the "middle" Arrows Down
     if (gameInProgress == true) then
         tableauArrow2.isVisible = true
+        tableauInnerArrow2.isVisible = true
+        tableauArrowText2.isVisible = true
+        tableauArrowText2.text = "B"
         tableauArrow3.isVisible = true
+        tableauInnerArrow3.isVisible = true
+        tableauArrowText3.isVisible = true
+        tableauArrowText3.text = "C"
+
     end
 
     -- Display Arrow Left
@@ -420,16 +439,27 @@ end
 function restartGame()
     print("*** GAME RE-START ***")
     gameoverGroup.isVisible = false
+    unlockedCardGroup.isVisible = false
+    adGroup.isVisible = false
     gameInProgress = true
     lbAction = utils.swapImage(lbAction, "Images/lbCartaInicial.png", 380, 50 , activeCardGroup)
     labelTimelineSize.text = ""
     utils.fitImage(lbAction, 200, 90, false)
     timelineGroup.isVisible = true
     tableauArrow0.isVisible = true
+    tableauInnerArrow1.isVisible = true
     tableauArrow1.isVisible = false
+    tableauInnerArrow1.isVisible = false
+    tableauArrowText1.isVisible = false
     tableauArrow2.isVisible = false
+    tableauInnerArrow2.isVisible = false
+    tableauArrowText2.isVisible = false
     tableauArrow3.isVisible = false
+    tableauInnerArrow3.isVisible = false
+    tableauArrowText3.isVisible = false
     tableauArrow4.isVisible = false
+    tableauInnerArrow4.isVisible = false
+    tableauArrowText4.isVisible = false
     tableauArrowLeft.isVisible = false
     tableauArrowRight.isVisible = false
     tableauCard1.isVisible = false
@@ -450,69 +480,23 @@ function restartGame()
     clockText.isVisible = false
 end
 
-local function loginHandler( event )
-    if not event.isError then
-        if (  event.phase == "logged in" ) then
-            submitScore(highScore)
-        end
-    else
-        print("ERROR EN EL LOGIN DE SCREEN-GAME: ".. event.errorMessage)
-
-    end    
-end
-
-local function submitScoreListener( event )
-
-    print("---> LLEGUE AL LISTENER DEL SubmitScore")
- 
-    -- Google Play Games Services score submission
-    if ( globalData.gpgs ) then
- 
-        if not event.isError then
-            local isBest = nil
-            if ( event.scores["daily"].isNewBest ) then
-                isBest = "diario"
-            elseif ( event.scores["weekly"].isNewBest ) then
-                isBest = "semanal"
-            elseif ( event.scores["all time"].isNewBest ) then
-                isBest = "de todos los tiempos"
-            end
-            if isBest then
-                -- Congratulate player on a high score
-                -- local message = "Nuevo record " .. isBest .. "!"
-                -- native.showAlert( "Congratulations", message, { "OK" } )
-            else
-                -- Encourage the player to do better
-                -- native.showAlert( "Sorry.", "Better luck next time!", { "OK" } )
-            end
-        end
-    
-    end
-end
-
-local function submitScore( score )
-
-    print("---> A PUNTO DE MANDAR EL SCORE")
-    if ( globalData.gpgs ) then
-        -- Submit a score to Google Play Games Services
-        globalData.gpgs.leaderboards.submit(
-        {
-            leaderboardId = "CgkIl_HAoI0OEAIQAQ",
-            score = score,
-            listener = submitScoreListener
-        })
-    end
-end
-
 function endGame(isDeckEmpty, isTimerEmpty, pos)
         --End Game
         print("*** GAME END ***")
         gameInProgress = false
         if (pos >0) then timeline[pos].isValid = false end
         tableauArrow1.isVisible = false
+        tableauInnerArrow1.isVisible = false
+        tableauArrowText1.isVisible = false
         tableauArrow2.isVisible = false
+        tableauInnerArrow2.isVisible = false
+        tableauArrowText2.isVisible = false
         tableauArrow3.isVisible = false
+        tableauInnerArrow3.isVisible = false
+        tableauArrowText3.isVisible = false
         tableauArrow4.isVisible = false
+        tableauInnerArrow4.isVisible = false
+        tableauArrowText4.isVisible = false
         activeCard = nil
         timelineSize = 0
         if (composer.getVariable("isRankedGame")) then timer.pause( countDownTimer ) end
@@ -522,15 +506,7 @@ function endGame(isDeckEmpty, isTimerEmpty, pos)
         if ( (score) > tonumber(highScore) )  then saveHighScore(score) end         
 
     if (composer.getVariable("isRankedGame")) then
-        if (globalData.gpgs) then
-            if (globalData.gpgs.isConnected()) then
-                submitScore(score)
-            else
-                highScore = score
-                globalData.gpgs.login( { userInitiated=true, listener=loginHandler } )
-            end
-        else
-        end
+        highScore = score
     end
 
         if (isDeckEmpty) then
@@ -712,12 +688,8 @@ end
     if (composer.getVariable("includeVolumen2") == true) then table.insert(cardVolumes, "2") end
     if (composer.getVariable("includeVolumen3") == true) then table.insert(cardVolumes, "3") end
     if (composer.getVariable("includeVolumen4") == true) then table.insert(cardVolumes, "4") end
+    if (composer.getVariable("includeVolumen5") == true) then table.insert(cardVolumes, "5") end
     if (composer.getVariable("includeVolumenX") == true) then table.insert(cardVolumes, "X") end
-    -- table.insert(cardVolumes, "1")
-    -- table.insert(cardVolumes, "2")
-    -- table.insert(cardVolumes, "3")
-    -- table.insert(cardVolumes, "4")
-    -- table.insert(cardVolumes, "X")
 
     -- Card Loading
     for k,volume in pairs(cardVolumes) do       
@@ -762,6 +734,8 @@ local function gotoMenu ( event )
             activeCardGroup.isVisible = false
             timelineGroup.isVisible = false   
             gameoverGroup.isVisible = false      
+            unlockedCardGroup.isVisible = false
+            adGroup.isVisible = false
             if (composer.getVariable("isRankedGame")) then timer.cancel( countDownTimer ) end
             composer.gotoScene("screen-menu") 
         end
@@ -815,7 +789,7 @@ local function prepareTableau()
 
     debugTableauVisibilityFlag = false
 
-    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 20, "FjallaOne-Regular", 24 )
+    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 15, "FjallaOne-Regular", 24 )
     clockText:setFillColor( 1, 1, 1 )
     clockText.isVisible = false
     activeCardGroup:insert( clockText )
@@ -834,12 +808,12 @@ local function prepareTableau()
 
     local options1 = 
             {
-                text = "aaa",
+                text = "",
                 x = centerX,
-                y = centerY - 110,
+                y = centerY - 90,
                 width = totalWidth /2,
                 font = "FjallaOne-Regular",
-                fontSize = 28
+                fontSize = 22
             }
     boxGameOverText = display.newText( options1 )
     boxGameOverText:setFillColor( 0, 0, 0 )
@@ -855,40 +829,28 @@ local function prepareTableau()
                 fontSize = 16
             }
     boxGameOverSubtext = display.newText( options2 )
+    boxGameOverSubtext.anchorX = 0.5
     boxGameOverSubtext:setFillColor( 0.43, 0.37, 0.28 )
     gameoverGroup:insert( boxGameOverSubtext )
-
-    local options3= 
-            {
-                text = "ccc",
-                x = centerX,
-                y = centerY - 15,
-                width = totalWidth /2,
-                font = "FjallaOne-Regular",
-                fontSize = 12
-            }
-    boxGameOverSubtext2 = display.newText( options3 )
-    boxGameOverSubtext2:setFillColor( 0.43, 0.37, 0.28 )
-    gameoverGroup:insert( boxGameOverSubtext2 )
 
     unlockedCard = display.newImageRect( activeCardGroup, "Images/Cartas/locked.jpg", 90, 125)
     unlockedCard.anchorX = 1
     unlockedCard.anchorY = 0
-    unlockedCard.x = rightSide - 50
-    unlockedCard.y = topSide + 25
+    unlockedCard.x = leftSide + 450
+    unlockedCard.y = topSide + 95
     unlockedCard:setStrokeColor( 0.43, 0.37, 0.28 )
     unlockedCard.strokeWidth = 5
-    gameoverGroup:insert( unlockedCard )  
+    unlockedCardGroup:insert( unlockedCard )  
 
-    unlockedCardBox = display.newRoundedRect(box.x, centerY - 35, 450, 50, 10 ) 
+    unlockedCardBox = display.newRoundedRect(box.x, topSide + 130, 500, 50, 10 ) 
     unlockedCardBox:setFillColor( 0.43, 0.37, 0.28 )  
-    gameoverGroup:insert( unlockedCardBox ) 
+    unlockedCardGroup:insert( unlockedCardBox ) 
 
     local options3 = 
             {
                 text = "¡Ganaste una nueva carta!",
                 x = centerX+100,
-                y = centerY - 45,
+                y = topSide + 120,
                 width = totalWidth /2,
                 font = "FjallaOne-Regular",
                 fontSize = 16,
@@ -897,13 +859,13 @@ local function prepareTableau()
     boxGameOverUnlockedText = display.newText( options3 )
     boxGameOverUnlockedText.anchorX = 1
     boxGameOverUnlockedText:setFillColor( 1, 1, 1 )
-    gameoverGroup:insert( boxGameOverUnlockedText )
+    unlockedCardGroup:insert( boxGameOverUnlockedText )
 
     local options4 = 
             {
                 text = "NNN Fue agregada a tu colección.",
                 x = centerX+100,
-                y = centerY - 25,
+                y = topSide + 140,
                 width = totalWidth - 80,
                 font = "FjallaOne-Regular",
                 fontSize = 11,
@@ -912,10 +874,30 @@ local function prepareTableau()
     boxGameOverUnlockedSubtext = display.newText( options4 )
     boxGameOverUnlockedSubtext.anchorX = 1
     boxGameOverUnlockedSubtext:setFillColor( 1, 1, 1 )
-    gameoverGroup:insert( boxGameOverUnlockedSubtext )    
+    unlockedCardGroup:insert( boxGameOverUnlockedSubtext )    
 
     gameoverGroup.parent:insert( gameoverGroup )
     gameoverGroup.isVisible = false -- Cambiar (!)
+    unlockedCardGroup.parent:insert( unlockedCardGroup )
+    unlockedCardGroup.isVisible = false
+
+    local options5 = 
+            {
+                text = "Conseguí nuestros juegos en www.aaludica.com.ar",
+                x = centerX,
+                y = topSide + 140,
+                width = totalWidth - 80,
+                font = "FjallaOne-Regular",
+                fontSize = 11,
+                align = 'right'
+            }
+    adText = display.newText( options5 )
+    adText:setFillColor( 0.1, 0.1, 0.1 )
+    adText.anchorX = 0.5
+    adGroup:insert (adText)
+
+    adGroup.parent:insert( adGroup )
+    adGroup.isVisible = false
 
     logoSAImg = display.newImageRect( activeCardGroup, "Images/logoSA-sm.png", 45,  45 )
     logoSAImg.anchorX = 0
@@ -1050,6 +1032,11 @@ local function prepareTableau()
   tableauArrow0.isSecondTap = false
   tableauArrow0.isVisible = true
   tableauArrow0:addEventListener("tap", startGame)
+  tableauInnerArrow0 = display.newCircle( timelineGroup,( totalWidth * 6/12 ) + leftSide , display.actualContentHeight-65, 12 )
+  tableauInnerArrow0:setFillColor(0.87, 0.75, 0.59)
+  tableauArrowText0 = display.newText(timelineGroup, 'A',( totalWidth * 6/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
+  tableauArrowText0:setFillColor( 0.58, 0.52, 0.4 )
+  
   tableauTooltip0 = display.newText(timelineGroup, '¡Tocá aquí!',( totalWidth * 6/12 ) + leftSide, display.actualContentHeight-90,  native.systemFont, 14);
   tableauTooltip0:setFillColor(0.87, 0.75, 0.59)
 
@@ -1058,24 +1045,48 @@ local function prepareTableau()
   tableauArrow1.isSecondTap = false
   tableauArrow1.isVisible = debugTableauVisibilityFlag
   tableauArrow1:addEventListener('tap',insertActiveCardInTimeline)
+  tableauInnerArrow1 = display.newCircle( timelineGroup,( totalWidth * 3/12 ) + leftSide , display.actualContentHeight-65, 12 )
+  tableauInnerArrow1:setFillColor(0.87, 0.75, 0.59)
+  tableauInnerArrow1.isVisible = debugTableauVisibilityFlag
+  tableauArrowText1 = display.newText(timelineGroup, 'A',( totalWidth * 3/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
+  tableauArrowText1:setFillColor( 0.58, 0.52, 0.4 )  
+  tableauArrowText1.isVisible = debugTableauVisibilityFlag
 
   tableauArrow2 = display.newCircle( timelineGroup, ( totalWidth * 5/12 ) + leftSide , display.actualContentHeight-65, 15 )
   tableauArrow2.relPos = 'B'
   tableauArrow2.isSecondTap = false
   tableauArrow2.isVisible = debugTableauVisibilityFlag
   tableauArrow2:addEventListener('tap',insertActiveCardInTimeline)
+  tableauInnerArrow2 = display.newCircle( timelineGroup,( totalWidth * 5/12 ) + leftSide , display.actualContentHeight-65, 12 )
+  tableauInnerArrow2:setFillColor(0.87, 0.75, 0.59)
+  tableauInnerArrow2.isVisible = debugTableauVisibilityFlag
+  tableauArrowText2 = display.newText(timelineGroup, 'A',( totalWidth * 5/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
+  tableauArrowText2:setFillColor( 0.58, 0.52, 0.4 )
+  tableauArrowText2.isVisible = debugTableauVisibilityFlag
 
   tableauArrow3 = display.newCircle( timelineGroup, ( totalWidth * 7/12 ) + leftSide ,  display.actualContentHeight-65, 15 )
   tableauArrow3.relPos = 'D'
   tableauArrow3.isSecondTap = false
   tableauArrow3.isVisible = debugTableauVisibilityFlag
   tableauArrow3:addEventListener('tap',insertActiveCardInTimeline)
+  tableauInnerArrow3 = display.newCircle( timelineGroup,( totalWidth * 7/12 ) + leftSide , display.actualContentHeight-65, 12 )
+  tableauInnerArrow3:setFillColor(0.87, 0.75, 0.59)
+  tableauInnerArrow3.isVisible = debugTableauVisibilityFlag
+  tableauArrowText3 = display.newText(timelineGroup, 'A',( totalWidth * 7/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
+  tableauArrowText3:setFillColor( 0.58, 0.52, 0.4 ) 
+  tableauArrowText3.isVisible = debugTableauVisibilityFlag
 
   tableauArrow4 = display.newCircle( timelineGroup, ( totalWidth * 9/12 ) + leftSide , display.actualContentHeight-65, 15 )
   tableauArrow4.relPos = 'E'
   tableauArrow4.isSecondTap = false
   tableauArrow4.isVisible = debugTableauVisibilityFlag
   tableauArrow4:addEventListener('tap',insertActiveCardInTimeline)
+  tableauInnerArrow4 = display.newCircle( timelineGroup,( totalWidth * 9/12 ) + leftSide , display.actualContentHeight-65, 12 )
+  tableauInnerArrow4:setFillColor(0.87, 0.75, 0.59)
+  tableauInnerArrow4.isVisible = debugTableauVisibilityFlag
+  tableauArrowText4 = display.newText(timelineGroup, 'A',( totalWidth * 9/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
+  tableauArrowText4:setFillColor( 0.58, 0.52, 0.4 )  
+  tableauArrowText4.isVisible = debugTableauVisibilityFlag
 
   tableauArrowLeft = display.newPolygon(timelineGroup, leftSide + 20, display.actualContentHeight-65, {
         5,display.actualContentHeight-65 , 

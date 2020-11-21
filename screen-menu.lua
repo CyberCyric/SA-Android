@@ -126,21 +126,6 @@ function scene:create( event )
     butShowGameModes.anchorY = 0
     sceneGroup:insert( butShowGameModes )
 
-    local butRanking = widget.newButton({  
-        id = "ranking",  
-        width = 140,
-        height = 50,
-        defaultFile = "Images/boton-ranking.png",
-        overFile = "Images/boton-ranking-on.png",
-        onEvent = handleButtonEvent
-    })
-    -- Center the button
-    butRanking.x = leftSide+50
-    butRanking.y = 160
-    butRanking.anchorX = 0
-    butRanking.anchorY = 0
-    sceneGroup:insert( butRanking )
-
  local butCartas = widget.newButton({  
         id = "album",  
         width = 140,
@@ -151,37 +136,35 @@ function scene:create( event )
     })
     -- Center the button
     butCartas.x = leftSide+50
-    butCartas.y = 210
+    butCartas.y = 160
     butCartas.anchorX = 0
     butCartas.anchorY = 0
     sceneGroup:insert( butCartas )
 
     local butOptions = widget.newButton({   
         id = "gameOptions", 
-        width = 45,
-        height = 39,
+        width = 140,
+        height = 50,
         defaultFile = "Images/boton-opciones.png",
-        overFile = "Images/boton-opciones-on.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butOptions.x = leftSide+60
-    butOptions.y = 270
+    butOptions.x = leftSide+50
+    butOptions.y = 210
     butOptions.anchorX = 0
     butOptions.anchorY = 0
     sceneGroup:insert( butOptions )
 
     local butHelp = widget.newButton({   
         id = "ayuda", 
-        width = 45,
-        height = 39,        
+        width = 140,
+        height = 50,        
         defaultFile = "Images/boton-ayuda.png",
-        overFile = "Images/boton-ayuda-on.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butHelp.x = leftSide+130
-    butHelp.y = 270
+    butHelp.x = leftSide+50
+    butHelp.y = 260
     butHelp.anchorX = 0
     butHelp.anchorY = 0
     butHelp.isVisible = true

@@ -1,7 +1,3 @@
------------------------------------------------------------------------------------------
-
-
--- Your code here
 local composer = require( "composer" )
 local utils = require( "utils" )
 local os = require( "os" )
@@ -38,23 +34,6 @@ local function onSystemEvent( event )
     end
 end
 
--- Google Play Games Services initialization/login listener
-local function googleLoginHandler( event )
-
-    if not event.isError then
-        if ( event.phase == "logged in" ) then  -- Successful login event            
-            print("-> LOGIN OK")
-            composer.setVariable("globalData", globalData)
-            composer.gotoScene("screen-aaludica")
-            -- timer.performWithDelay(1000, function() composer.gotoScene("screen-aaludica"); end)
-        end
-    else
-        print("-> ERROR "..event.errorCode..": "..event.errorMessage)
-    end    
-end
-
-
-
 local function startGame()
 
 	system.setIdleTimer(false) -- Screen does not turn off automatically
@@ -66,16 +45,8 @@ local function startGame()
 	composer.setVariable( "isRankedGame", false)
 	composer.setVariable( "timelineIndex", 1) -- Pointer to center card on 5-card displayed timeline
 
-    globalData.gpgs = nil
+    timer.performWithDelay(1000, function() composer.gotoScene("screen-aaludica"); end)
     
-    if ( platform == "android" and env ~= "simulator" ) then
-        globalData.gpgs = require( "plugin.gpgs.v2" )      
-        globalData.gpgs.login( { userInitiated=true, listener=googleLoginHandler } )
-    else
-        print("[DEBUG] Not in Android")
-        timer.performWithDelay(1000, function() composer.gotoScene("screen-aaludica"); end)
-    end
-
 end
 
 -- start --
