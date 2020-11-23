@@ -256,9 +256,6 @@ INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','El paya
 como la fuerza de la pasión, el paso del tiempo, los rituales, el dolor y la consciencia de la muerte.""','Y')"
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Primera presentación de Fú-Manchú', '04-025.jpg', '1929', 'En el viejo teatro San Martín, el mago David Bamberg se presenta por primera vez bajo el nombre de ‘Fu Manchú’, un misterioso hechicero oriental. Sus shows estaban llenos de humor, grandes ilusiones, impactantes escenarios y sorpresas. Será el inicio de una exitosa carrera de varias décadas. ','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Estreno de la serie de Hijitus', '04-026.jpg', '1967', 'Se estrena en televisión la serie de dibujos animados Hijitus, que se transmitió por Canal 13 hasta 1974. Fue la primera serie televisiva de dibujos animados de Argentina y la más exitosa de América Latina en su historia.','Y')
-
-
-
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Vito Dumas circunnavega el mundo en solitario', '04-030.jpg', '1943', 'En plena II guerra mundial y con provisiones para un año, el navegante solitario Vito Dumas zarpa para realizar esta hazaña: circunnavegar el mundo por el paralelo 40º, una ruta considerada imposible en solitario y con una embarcación pequeña a vela.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Bouchard llega a California', '04-031.jpg', '1818', 'Durante seis días, el área de California fue parte de la Argentina. Ocurrió cuando el capitán Bouchard tomó la fortaleza de Monterey, entre San Francisco y Los Angeles, en lo que aún era territorio de la corona española, en guerra contra las Provincias Unidas del Río de la Plata.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Creación de la Comisión Nacional de Energía Atómica', '04-032.jpg', '1950', 'Luego de la fallida experiencia del "Proyecto Huemul"y 
@@ -274,24 +271,6 @@ INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Última
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Inauguración del Casino Central de Mar del Plata', '04-040.jpg', '1939', 'Concebido por el arquitecto Alejandro Bustillo, forma un conjunto arquitectónico con el Gran Hotel Provincial, que es una de las vistas icónicas de la ciudad. Fue declarado patrimonio histórico nacional y, por su extensión, es uno de los más grandes del mundo','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Publicación de El Hombre Mediocre', '04-041.jpg', '1913', 'En esta obra su autor, el médico y sociólogo José Ingenieros, define tres tipos de hombres: El hombre inferior, el hombre mediocre y el hombre superior. El hombre mediocre tuvo gran influencia en la juventud argentina de su tiempo y en especial en el movimiento de la Reforma Universitaria iniciado en 1918.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('4','Creación del Parque Nacional Nahuel Huapi', '04-042.jpg', '1922', 'Es el más antiguo de los parques nacionales argentinos, creado en tierras donadas por el Perito F. Moreno. Conocido por su atractiva geografía en la que se destacan el lago Nahuel Huapi, y el cerro Tronador, complementados por un variado conjunto de montañas, valles, más de 60 lagos y lagunas y arroyos.','Y')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Ingreso a la NBA de Emanuel Ginóbili', '05-001.jpg', '2002', 'Llega a San Antonio Spurs y juega su primer partido en la NBA el 29 de octubre frente a Los Angeles Lakers. En su primer año, Ginóbili se desempeñó como escolta suplente del equipo.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Fundación del Club Atlético Boca Juniors', '05-002.jpg', '1905', 'Entidad deportiva con sede en el barrio porteño de La Boca en Buenos Aires. Fue fundada por seis vecinos de ascendencia italiana. Sus colores se basan en la bandera sueca, avistada en un barco que atracó en el puerto de La Boca durante los primeros años de la fundación del club.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Fundación del Club Atlético River Plate', '05-003.jpg', '1901', 'Entidad deportiva con sede en el barrio porteño de Núñez. Fue fundado en el barrio de La Boca, y adoptó su nombre por una traducción errónea de “Río de la Plata”. Su estadio, conocido popularmente como “El Monumental”, es donde desempeña su localía la selección de fútbol de Argentina.','Y')
@@ -323,48 +302,6 @@ INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Fundaci
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Fundación del Club Atlético Chacarita Juniors', '05-029.jpg', '1905', 'Entidad deportiva con sede en el barrio porteño de Chacarita. Para los colores de su insignia se escogió al rojo por el socialismo, al cual estaban vinculados todos los miembros fundadores. El blanco se escogió por la pureza de sus miembros y el negro por la cercanía del cementerio.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Fundación del Club Atlético Atlanta', '05-030.jpg', '1904', 'Entidad deportiva con sede en el barrio porteño de Villa Crespo. Se afirma que esta habría surgido en conmemoración al terremoto ocurrido en la homónima ciudad de Estados Unidos unos meses antes de la fecha de fundación del club,4â€‹ mientras que otra versión apunta a que el nombre provendría de un barco de guerra también estadounidense que habría arribado al puerto de Buenos Aires.','Y')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('5','Primer Rally Dakar en Argentina', '05-031.jpg', '2009', 'La 30a edición de Rally Dakar se realizó por primera vez en Sudamérica por cuestiones de seguridad. La competición partió de Buenos Aires, llegó hasta el puerto chileno de Valparaíso, continuó por el norte de Chile, y regresó a territorio argentino para terminar en la misma ciudad donde comenzó, después de 9.574 km.','Y')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('X','Lanzamiento del juego Sucesos Argentinos', 'X-001.jpg', '2016', 'En abril de este año, AA Lúdica lanza el juego Sucesos Argentinos.','N')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('X','Lanzamiento del juego Ars Domino', 'X-002.jpg', '2018', 'En mayo de este año, AA Lúdica lanza el juego Ars Dominó.','N')
 INSERT INTO cartas(vol, title, image, year, text, unlocked) VALUES ('X','Lanzamiento del juego Nom Noms', 'X-003.jpg', '2018', 'En junio de este año, AA Lúdica lanza el juego Nom Noms.','N')

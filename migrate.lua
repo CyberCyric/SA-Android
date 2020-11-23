@@ -36,31 +36,26 @@ M.doMigrate = function()
         io.close( file )
     end
 
-    -- Abro la base de datos
+  	-- Open "data.db". If the file doesn't exist, it will be created
     path = system.pathForFile( "data.db", system.DocumentsDirectory )
-    local db = sqlite3.open( path )    
+    local db = sqlite3.open( path ) 
+    if db then
+        SQL = [[CREATE TABLE IF NOT EXISTS cartas(carta_id INTEGER PRIMARY KEY, vol TEXT, image TEXT, title TEXT, year TEXT, text TEXT, unlocked TEXT);]]
+        db:exec(SQL)
 
-    -- DEBUGGING!!
-    db:exec("DELETE FROM cartas")
-    
-    -- Set up the tables if they don't exist
-    local tableMigraciones = [[CREATE TABLE IF NOT EXISTS migraciones(migracion INTEGER PRIMARY KEY);]]
-    db:exec( tableMigraciones )
-    local tableCartas = [[CREATE TABLE IF NOT EXISTS cartas(carta_id INTEGER PRIMARY KEY, vol TEXT, image TEXT, title TEXT, year TEXT, text TEXT, unlocked TEXT);]]
-    db:exec( tableCartas )    
+		for row in db:nrows("SELECT COUNT(carta_id) AS total FROM cartas") do
+			if (row.total == 0) then
+				local path = system.pathForFile( "cartas.db", system.BaseDirectory )
+		    	local file, errorString = io.open( path, "r" )
+		    	for row in file:lines() do
+			      	db:exec(row)
+				end
+				io.close( file )
+			end
+		end
+    end
 
-	-- Recorro los archivos de cartas
-	local path = system.pathForFile( "", system.baseDirectory )
+    db:close()
+    end
 
-	for file in lfs.dir ( path ) do
-	    if string.find( file, "cartas.db" ) then
-	    	print("[DEBUG] Voy a procesar el archivo "..file)
-	    	local mig = file.sub(file, file.find(file,'.') )
-	        	migrateFile(file, db, mig)
-	    end
-	end
-
-	db:close()
-
-end
 return M
