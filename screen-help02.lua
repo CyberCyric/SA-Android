@@ -77,17 +77,17 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Modos de juego", rightSide - 250, 120, 250, 100, "georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "Modos de juego", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto2 = display.newText(sceneGroup, "Hay dos modos de juego:", rightSide - 250, 150, 250, 100, "georgia.ttf", 10 )
+    texto2 = display.newText(sceneGroup, "Hay dos modos de juego:", rightSide - 250, 150, 250, 100, "fonts\georgia.ttf", 10 )
     texto2.anchorX = 0
     texto2:setFillColor( 1, 1, 1 )
     texto2.anchorX = 0
-    texto3 = display.newText(sceneGroup, "No hay límite de tiempo para ubicar las cartas. Tus partidas no se guardan en el Ranking Global.", leftSide + 30, 280, 250, 100, "georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "No hay límite de tiempo para ubicar las cartas. Tus partidas no se guardan en el Ranking Global.", leftSide + 30, 280, 250, 100, "fonts\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
-    texto4 = display.newText(sceneGroup, "Tenés 15 segundos para ubicar cada carta, si lo agotas, perdés. Los mejores resultados en Modo contra Reloj se guardan en el Ranking Global.", leftSide + 300, 280, 250, 100, "georgia.ttf", 11 )
+    texto4 = display.newText(sceneGroup, "Tenés 15 segundos para ubicar cada carta, si lo agotas, perdés. Los mejores resultados en Modo contra Reloj se guardan en el Ranking Global.", leftSide + 300, 280, 250, 100, "fonts\georgia.ttf", 11 )
     texto4.anchorX = 0
     texto4:setFillColor( 1, 1, 1 )  
 

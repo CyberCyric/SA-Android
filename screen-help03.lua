@@ -78,10 +78,10 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "¿Cómo se juega?", rightSide - 250, 120, 250, 100, "georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "¿Cómo se juega?", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Al hacer click en toca aquí! tu carta inicial se ubica en el centro de tu línea de tiempo. A partir de ahora, vas a ir recibiendo nuevas cartas que tenés que ir colocando en su lugar correcto.", leftSide + 30, topSide + 140, 250, 100, "georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "Al hacer click en toca aquí! tu carta inicial se ubica en el centro de tu línea de tiempo. A partir de ahora, vas a ir recibiendo nuevas cartas que tenés que ir colocando en su lugar correcto.", leftSide + 30, topSide + 140, 250, 100, "fonts\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3.anchorY  = 0
     texto3:setFillColor( 1, 1, 1 )

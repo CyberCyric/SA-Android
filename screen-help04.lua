@@ -77,10 +77,10 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "¿Cómo se juega?", rightSide - 250, 120, 250, 100, "georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "¿Cómo se juega?", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Cada círculo representa un posible lugar para colocar la carta. Debajo de cada carta podés ver el año de la misma.  Si ubicás la carta correctamente, vas a recibir una nueva para seguir jugando. \n \nCada vez es un poco más difícil porque con cada carta que agregas a la línea de tiempo hay más lugares posibles para ubicar la siguiente.", leftSide + 30, topSide + 140, 250, 100, "georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "Cada círculo representa un posible lugar para colocar la carta. Debajo de cada carta podés ver el año de la misma.  Si ubicás la carta correctamente, vas a recibir una nueva para seguir jugando. \n \nCada vez es un poco más difícil porque con cada carta que agregas a la línea de tiempo hay más lugares posibles para ubicar la siguiente.", leftSide + 30, topSide + 140, 250, 100, "fonts\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3.anchorY = 0
     texto3:setFillColor( 1, 1, 1 )

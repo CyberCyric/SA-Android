@@ -74,13 +74,13 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Sucesos Argentinos es un juego de cartas dónde se pone a prueba tu conocimiento de historia argentina.", leftSide + 30, 170, 400, 100, "georgia.ttf", 14 )
+    texto1 = display.newText(sceneGroup, "Sucesos Argentinos es un juego de cartas dónde se pone a prueba tu conocimiento de historia argentina.", leftSide + 30, 170, 400, 100, "fonts\georgia.ttf", 14 )
     texto1:setFillColor( 1, 1, 1 )
     texto1.anchorX = 0
-    texto2 = display.newText(sceneGroup, "¡La idea es simple!", leftSide + 30, 240, 250, 100, "georgia.ttf", 18 )
+    texto2 = display.newText(sceneGroup, "¡La idea es simple!", leftSide + 30, 240, 250, 100, "fonts\georgia.ttf", 18 )
     texto2:setFillColor( 1, 1, 1 )
     texto2.anchorX = 0
-    texto3 = display.newText(sceneGroup, "Tenés que construir una línea de tiempo colocando las cartas en el orden correcto. ", leftSide + 30, 290, 250, 100, "georgia.ttf", 12 )
+    texto3 = display.newText(sceneGroup, "Tenés que construir una línea de tiempo colocando las cartas en el orden correcto. ", leftSide + 30, 290, 250, 100, "fonts\georgia.ttf", 12 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
 

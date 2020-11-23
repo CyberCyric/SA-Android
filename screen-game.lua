@@ -113,51 +113,33 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
     totalCartas = composer.getVariable("timelineSize") - 1
     hs = composer.getVariable("highscore")
 
-    local banderaIzq = display.newImage( "Images/bandera-izquierda.png", totalWidth - 20, 30 )
-    banderaIzq.x = leftSide + 40
-    banderaIzq.anchorX = 0
-    banderaIzq.y = topSide + 60
-    utils.fitImage(banderaIzq, 80, 80, true) 
-    gameoverGroup:insert( banderaIzq )
-
-    local banderaDer = display.newImage( "Images/bandera-derecha.png", totalWidth - 20, 30 )
-    banderaDer.x = rightSide - 40
-    banderaDer.anchorX = 1
-    banderaDer.y = topSide + 60
-    utils.fitImage(banderaDer, 80, 80, true) 
-    gameoverGroup:insert( banderaDer )
-
     if (isDeckEmpty) then 
         boxGameOverText.text = "¡Juego terminado!"
-        boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. " 
+        boxGameOverSubtext.text =  "Acertaste "..totalCartas.." cartas.  " 
         if (totalCartas > tonumber(hs) ) then
-            boxGameOverSubtext.text = boxGameOverSubtext.text.." (¡Es tu nuevo récord!)"
+            boxGameOverSubtext.text = boxGameOverSubtext.text.."¡Es tu nuevo récord!"
         else
-            boxGameOverSubtext.text = boxGameOverSubtext.text.." (Tu récord es de "..composer.getVariable("highscore")..")."
+            boxGameOverSubtext.text = boxGameOverSubtext.text.."Tu récord es de "..composer.getVariable("highscore").."."
         end
     elseif (isTimerEmpty) then
        boxGameOverText.text = "¡Se terminó el tiempo!"
-       boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. " 
+       boxGameOverSubtext.text =  "Acertaste "..totalCartas.." cartas. " 
         if (totalCartas > tonumber(hs) ) then
-            boxGameOverSubtext.text = boxGameOverSubtext.text.." (¡Es tu nuevo récord!)"
+            boxGameOverSubtext.text = boxGameOverSubtext.text.."¡Es tu nuevo récord!"
         else
-            boxGameOverSubtext.text = boxGameOverSubtext.text.." (Tu récord personal es de "..composer.getVariable("highscore")..")."
+            boxGameOverSubtext.text = boxGameOverSubtext.text.."Tu récord personal es de "..composer.getVariable("highscore").."."
         end
     else
          boxGameOverText.text = "¡Acertaste todas las cartas!"
          boxGameOverSubtext.text =  "Colocaste "..totalCartas.." cartas. (Tu récord es de "..composer.getVariable("highscore").." )."
     end    
 
-    boxGameOverText.x = leftSide + 300
-    boxGameOverText.y = 50
-    boxGameOverSubtext.x = leftSide + 300
-    boxGameOverSubtext.y = 75
-
     -- Compruebo si unlockea alguna carta
     math.randomseed(os.time())
     local rnd = math.random(1,100)
 
-    if (rnd <= #timeline * 3) then
+    -- if (rnd <= #timeline * 3) then
+    if (1 == 1) then
         -- Obtengo una carta Locked al azar y la Unlockeo
         path = system.pathForFile( "data.db", system.DocumentsDirectory )
         db = sqlite3.open( path )
@@ -171,11 +153,10 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
         
         if (i > 0) then
             print("Unlockeo:"..carta.title) 
-            unlockedCardBox.isVisible = true
-            boxGameOverUnlockedSubtext.text = "'"..carta.title.."' fue agregada a tu colección."
+            boxGameOverUnlockedSubtext.text = "\""..carta.title.."\" fue agregada a tu colección."
             unlockedCard = utils.swapImage(unlockedCard, "Images/Cartas/"..carta.image, 50, 70, unlockedCardGroup, 0 )
             unlockedCard:setStrokeColor( 0.58, 0.53, 0.4)
-            unlockedCard.strokeWidth = 5
+            unlockedCard.strokeWidth = 3
             boxGameOverUnlockedText.isVisible = true
             boxGameOverUnlockedSubtext.isVisible = true
             unlockedCard.isVisible = true
@@ -197,8 +178,6 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
         db:close()
     else  
         -- No unlockeo cartas
-        unlockedCardBox.isVisible = false
-        boxGameOverSubtext.y = 75 
         boxGameOverUnlockedText.isVisible = false
         boxGameOverUnlockedSubtext.isVisible = false
         unlockedCard.isVisible = false
@@ -789,7 +768,7 @@ local function prepareTableau()
 
     debugTableauVisibilityFlag = false
 
-    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 15, "FjallaOne-Regular", 24 )
+    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 15, "fonts\FjallaOne-Regular.ttf", 24 )
     clockText:setFillColor( 1, 1, 1 )
     clockText.isVisible = false
     activeCardGroup:insert( clockText )
@@ -797,12 +776,12 @@ local function prepareTableau()
     --[[ Modal Fin Juego ]]
     gameoverGroup.height = totalHeight
     gameoverGroup.width = totalWidth
-    local box = display.newImage( "Images/box-gameover.png", totalWidth - 20, 30 )
+    local box = display.newImage( "Images/box-gameover.png", totalWidth - 10, totalHeight )
     box.anchorX = 0.5
-    box.anchorY = 0.5
+    box.anchorY = 0
     box.x = centerX
-    box.y = centerY - 70
-    utils.fitImage(box, totalWidth - 20, totalHeight, true) 
+    box.y = topSide + 10
+    utils.fitImage(box, totalWidth - 10, totalHeight, true) 
     box:addEventListener("tap", restartGame)
     gameoverGroup:insert( box )
 
@@ -810,9 +789,9 @@ local function prepareTableau()
             {
                 text = "",
                 x = centerX,
-                y = centerY - 90,
+                y = topSide + 50,
                 width = totalWidth /2,
-                font = "FjallaOne-Regular",
+                font = "fonts\FjallaOne-Regular.ttf",
                 fontSize = 22
             }
     boxGameOverText = display.newText( options1 )
@@ -823,56 +802,56 @@ local function prepareTableau()
             {
                 text = "bbb",
                 x = centerX,
-                y = centerY - 80,
+                y = topSide + 75,
                 width = totalWidth /2,
-                font = "FjallaOne-Regular",
-                fontSize = 16
+                font = "fonts/Montserrat-SemiBold.otf",
+                fontSize = 14
             }
     boxGameOverSubtext = display.newText( options2 )
     boxGameOverSubtext.anchorX = 0.5
     boxGameOverSubtext:setFillColor( 0.43, 0.37, 0.28 )
     gameoverGroup:insert( boxGameOverSubtext )
 
+    local logoSA = display.newImageRect( activeCardGroup, "Images/logoSA.png", 110, 60)
+    logoSA.x = leftSide + 80
+    logoSA.y = topSide + 60
+    gameoverGroup:insert( logoSA )
+
     unlockedCard = display.newImageRect( activeCardGroup, "Images/Cartas/locked.jpg", 90, 125)
     unlockedCard.anchorX = 1
     unlockedCard.anchorY = 0
-    unlockedCard.x = leftSide + 450
-    unlockedCard.y = topSide + 95
+    unlockedCard.x = leftSide + 90
+    unlockedCard.y = topSide + 120
+    unlockedCard:rotate ( 45 )
     unlockedCard:setStrokeColor( 0.43, 0.37, 0.28 )
-    unlockedCard.strokeWidth = 5
+    unlockedCard.strokeWidth = 3
     unlockedCardGroup:insert( unlockedCard )  
-
-    unlockedCardBox = display.newRoundedRect(box.x, topSide + 130, 500, 50, 10 ) 
-    unlockedCardBox:setFillColor( 0.43, 0.37, 0.28 )  
-    unlockedCardGroup:insert( unlockedCardBox ) 
 
     local options3 = 
             {
                 text = "¡Ganaste una nueva carta!",
-                x = centerX+100,
-                y = topSide + 120,
+                x = leftSide + 100,
+                y = topSide + 140,
                 width = totalWidth /2,
-                font = "FjallaOne-Regular",
-                fontSize = 16,
-                align = 'right'
+                font = "fonts\FjallaOne-Regular.ttf",
+                fontSize = 22
             }
     boxGameOverUnlockedText = display.newText( options3 )
-    boxGameOverUnlockedText.anchorX = 1
+    boxGameOverUnlockedText.anchorX = 0
     boxGameOverUnlockedText:setFillColor( 1, 1, 1 )
     unlockedCardGroup:insert( boxGameOverUnlockedText )
 
     local options4 = 
             {
                 text = "NNN Fue agregada a tu colección.",
-                x = centerX+100,
-                y = topSide + 140,
+                x = leftSide + 100,
+                y = topSide + 170,
                 width = totalWidth - 80,
-                font = "FjallaOne-Regular",
-                fontSize = 11,
-                align = 'right'
+                font = "fonts\FjallaOne-Regular.ttf",
+                fontSize = 14
             }
     boxGameOverUnlockedSubtext = display.newText( options4 )
-    boxGameOverUnlockedSubtext.anchorX = 1
+    boxGameOverUnlockedSubtext.anchorX = 0
     boxGameOverUnlockedSubtext:setFillColor( 1, 1, 1 )
     unlockedCardGroup:insert( boxGameOverUnlockedSubtext )    
 
@@ -887,7 +866,7 @@ local function prepareTableau()
                 x = centerX,
                 y = topSide + 140,
                 width = totalWidth - 80,
-                font = "FjallaOne-Regular",
+                font = "fonts\FjallaOne-Regular.ttf",
                 fontSize = 11,
                 align = 'right'
             }
@@ -898,6 +877,7 @@ local function prepareTableau()
 
     adGroup.parent:insert( adGroup )
     adGroup.isVisible = false
+    --[[ FIN DEL Modal Fin Juego ]]
 
     logoSAImg = display.newImageRect( activeCardGroup, "Images/logoSA-sm.png", 45,  45 )
     logoSAImg.anchorX = 0
@@ -913,7 +893,7 @@ local function prepareTableau()
     lbAction.x = leftSide + logoSAImg.width + 10
     lbAction.y = topSide + 30
 
-    activeCardTitle = display.newText(activeCardGroup, "Title Title Title" , leftSide +20 ,topSide + 100, display.contentWidth * 0.85, 70,"FjallaOne-Regular.ttf", 20, center )
+    activeCardTitle = display.newText(activeCardGroup, "Title Title Title" , leftSide +20 ,topSide + 100, display.contentWidth * 0.85, 70,"fonts\FjallaOne-Regular.ttf", 18, center )
     activeCardTitle.anchorX = 0
     activeCardTitle:setFillColor( 1, 1, 1 )
 
@@ -941,7 +921,7 @@ local function prepareTableau()
     activeCardPip:setStrokeColor( 0.58, 0.52, 0.39 )
     activeCardGroup:insert( activeCardPip )
 
-    local tableauTimeline = display.newRoundedRect( timelineGroup, leftSide + 10, bottomSide-70, totalWidth - 20, 10, 20 )
+    local tableauTimeline = display.newRoundedRect( timelineGroup, leftSide + 30, bottomSide-70, totalWidth - 60 , 10, 20 )
     tableauTimeline.anchorX = 0
     tableauTimeline.anchorY = 0
 
@@ -1094,7 +1074,7 @@ local function prepareTableau()
         45,display.actualContentHeight-80
     })
   tableauArrowLeft.isVisible = debugTableauVisibilityFlag
-  tableauArrowLeft:setFillColor(1,1,1)
+  tableauArrowLeft:setFillColor(0.44, 0.37, 0.25)
   tableauArrowLeft:addEventListener('touch', arrowLeftHandler)  
 
   tableauArrowRight = display.newPolygon(timelineGroup, rightSide - 20, display.actualContentHeight-65, { 
@@ -1103,7 +1083,7 @@ local function prepareTableau()
         totalWidth - 45,display.actualContentHeight-80
     })
   tableauArrowRight.isVisible = debugTableauVisibilityFlag
-  tableauArrowRight:setFillColor(1,1,1)
+  tableauArrowRight:setFillColor(0.44, 0.37, 0.25)
   tableauArrowRight:addEventListener('touch', arrowRightHandler)  
 
   timelineGroup:addEventListener("touch", timelineCardHandle)

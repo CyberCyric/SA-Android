@@ -73,7 +73,7 @@ function scene:create( event )
     utils.fitImage(logoImage, 200 , 133 , false)
 
     local txtMenu = display.newText( "Sucesos Argentinos es un juego de cartas donde se pone a prueba tu conocimiento, organizando una cadena en orden cronológico con varios hitos de la historia argentina. \n\n En esta versión digital podés autodesafiarte a armar la línea de tiempo más extensa que puedas.", 
-        220, 20, totalWidth / 2, 200, "georgia.ttf", 12 )
+        220, 20, totalWidth / 2, 200, "fonts\georgia.ttf", 12 )
     txtMenu:setFillColor( 1, 1, 1 )
     txtMenu.anchorX = 0
     txtMenu.anchorY = 0
@@ -100,7 +100,7 @@ function scene:create( event )
         y = 250, 
         width = 110, 
         height = 200, 
-        font = "georgia.ttf", 
+        font = "fonts\georgia.ttf", 
         fontSize = 10, 
         align = "right"
     }

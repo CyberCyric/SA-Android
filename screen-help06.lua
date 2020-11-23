@@ -77,10 +77,10 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Cartas", rightSide - 250, 120, 250, 100, "georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "Cartas", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "El juego se compone de cartas que representan sucesos de la historia argentina. Cada carta tiene un título, imagen, un pequeño texto descriptivo. Cuando la carta se ubica en la Línea de Tiempo se muestra además el año en que ocurrió (y si está bien o mal ubicada). Las cartas se dividen en 4 volúmenes.\n\nLos tres primeros corresponden a las cartas incluídas en la versión de mesa del juego(I: Presidencias y Conflictos, II: Sociedad y Economía y III: Ciencia y Cultura).\n\nAdemás, se incluyen Cartas Inéditas, que deben ser habilitadas durante las partidas. (ver próxima sección).", leftSide + 50, topSide + 210, 350, 200, "georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "El juego se compone de cartas que representan sucesos de la historia argentina. Cada carta tiene un título, imagen, un pequeño texto descriptivo. Cuando la carta se ubica en la Línea de Tiempo se muestra además el año en que ocurrió (y si está bien o mal ubicada). Las cartas se dividen en 4 volúmenes.\n\nLos tres primeros corresponden a las cartas incluídas en la versión de mesa del juego(I: Presidencias y Conflictos, II: Sociedad y Economía y III: Ciencia y Cultura).\n\nAdemás, se incluyen Cartas Inéditas, que deben ser habilitadas durante las partidas. (ver próxima sección).", leftSide + 50, topSide + 210, 350, 200, "fonts\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
 

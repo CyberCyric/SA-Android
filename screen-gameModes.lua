@@ -47,7 +47,7 @@ function scene:create( event )
     backgroundImage.height = totalHeight - 100
     backgroundImage.width = totalWidth - 100
 
-    local lbModoJuego = display.newText(" Elegí el modo de juego:", leftSide + 250, 100, 350, 0, "FjallaOne-Regular", 22 )
+    local lbModoJuego = display.newText(" Elegí el modo de juego:", leftSide + 250, 100, 350, 0, "fonts\FjallaOne-Regular.ttf", 22 )
     lbModoJuego:setFillColor( 0, 0, 0 ) 
     sceneGroup:insert( lbModoJuego )   
 
@@ -56,7 +56,7 @@ function scene:create( event )
         width = 150,
         height = 40,
         label = "Casual",
-        font = "FjallaOne-Regular",
+        font = "fonts\FjallaOne-Regular.ttf",
         fontSize = 24,
         onRelease = handleButtonEvent
     })
@@ -67,7 +67,7 @@ function scene:create( event )
     butStartCasualGame.anchorY = 0
     sceneGroup:insert( butStartCasualGame )
 
-    local txtCasualGame = display.newText( "Tranquilo. Relajado. Sin presiones.", leftSide + 220, 140, 350, 0, "georgia.ttf", 16 )
+    local txtCasualGame = display.newText( "Tranquilo. Relajado. Sin presiones.", leftSide + 220, 140, 350, 0, "fonts\georgia.ttf", 16 )
     txtCasualGame.anchorX = 0
     txtCasualGame.anchorY = 0
     txtCasualGame:setFillColor( 0.2, 0.2, 0.2 )
@@ -78,7 +78,7 @@ function scene:create( event )
         width = 150,
         height = 40,
         label = "Contra reloj",
-        font = "FjallaOne-Regular",
+        font = "fonts\FjallaOne-Regular.ttf",
         fontSize = 24,        
         onRelease = handleButtonEvent
     })
@@ -89,7 +89,7 @@ function scene:create( event )
     butStartRankedGame.anchorY = 0
     sceneGroup:insert( butStartRankedGame )
 
-    local txtRankedGame = display.newText( "¡Tenés 15 segundos para ubicar cada carta! Los mejores resultados van al Ranking global.", leftSide + 220, 190, 300, 0, "georgia.ttf", 16 )
+    local txtRankedGame = display.newText( "¡Tenés 15 segundos para ubicar cada carta! Los mejores resultados van al Ranking global.", leftSide + 220, 190, 300, 0, "fonts\georgia.ttf", 16 )
     txtRankedGame.anchorX = 0
     txtRankedGame.anchorY = 0
     txtRankedGame:setFillColor( 0.2, 0.2, 0.2 )

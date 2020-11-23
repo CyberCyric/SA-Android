@@ -89,14 +89,14 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Cartas Secretas", rightSide - 250, 120, 250, 100, "georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "Cartas Secretas", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto2 = display.newText(sceneGroup, "Este volumen incluye cartas que no están publicadas en la versión de mesa del juego Sucesos Argentinos. Futuras actualizaciones de la aplicación incluirán más Cartas Secretas.\n\nApenas se instala la aplicación, todas las Cartas Secretas están deshabilitadas. Al terminar cada partida, hay una posibilidad de habilitar una de ellas al azar. Las chances aumentan cuanto más extensa sea la línea de tiempo formada.\n\n", leftSide + 50, topSide + 120, 380, 200, "georgia.ttf", 11 )
+    texto2 = display.newText(sceneGroup, "Este volumen incluye cartas que no están publicadas en la versión de mesa del juego Sucesos Argentinos. Futuras actualizaciones de la aplicación incluirán más Cartas Secretas.\n\nApenas se instala la aplicación, todas las Cartas Secretas están deshabilitadas. Al terminar cada partida, hay una posibilidad de habilitar una de ellas al azar. Las chances aumentan cuanto más extensa sea la línea de tiempo formada.\n\n", leftSide + 50, topSide + 120, 380, 200, "fonts\georgia.ttf", 11 )
     texto2.anchorX = 0
     texto2.anchorY = 0
     texto2:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Se puede ver el contenido de cualquiera de los Volúmenes, incluyendo las Cartas Secretas que ya habilitaste, tocando el botón \"CARTAS\" en el menú principal.", leftSide + 50, topSide + 330, 500, 200, "georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "Se puede ver el contenido de cualquiera de los Volúmenes, incluyendo las Cartas Secretas que ya habilitaste, tocando el botón \"CARTAS\" en el menú principal.", leftSide + 50, topSide + 330, 500, 200, "fonts\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
 
