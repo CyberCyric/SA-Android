@@ -45,7 +45,6 @@ M.swapImage = function(oldImage, imageFile, width, height, container, order)
         oldImage = nil
         return newImage
     end
-    
 end
 
 M.copyFileTo = function( filename, destination )

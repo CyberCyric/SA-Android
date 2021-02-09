@@ -6,12 +6,13 @@ local licensing = require( "licensing" )
 local platform = system.getInfo( "platform" )
 local env = system.getInfo( "environment" )
 local json = require( "json" )
-
 local sqlite3 = require( "sqlite3" )
 
 if ( platform == "android" and env ~= "simulator" ) then
     licensing.init( "google" )
 end
+
+native.setProperty( "androidSystemUiVisibility" , "immersiveSticky" )
 
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
