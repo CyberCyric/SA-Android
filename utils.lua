@@ -13,6 +13,10 @@ M.fitImage = function( displayObject, fitWidth, fitHeight, enlarge )
 	displayObject:scale( scaleFactor, scaleFactor )
 end
 
+M.perc = function( perc, fullPixel )
+	return perc * fullPixel / 100
+end
+
 M.file_exists = function(filepath)
    local result = false
    local img = display.newImage(filepath)

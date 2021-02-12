@@ -77,10 +77,10 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Ranking Global", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "Ranking Global", rightSide - 250, 120, 250, 100, "fonts\\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Si estás jugando en Modo Contra Reloj, y conseguís armar una línea de tiempo con muchas cartas, podés ubicarte en este Ranking. Para verlo, toca el botón RANKING del menú principal.\n\nCada ranking muestran  los 20 mejores puntajes en las categorías DIARIO, SEMANAL y GLOBAL (es decir, de todos los tiempos). ", leftSide + 250, topSide + 200, 250, 100, "fonts\georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "Si estás jugando en Modo Contra Reloj, y conseguís armar una línea de tiempo con muchas cartas, podés ubicarte en este Ranking. Para verlo, toca el botón RANKING del menú principal.\n\nCada ranking muestran  los 20 mejores puntajes en las categorías DIARIO, SEMANAL y GLOBAL (es decir, de todos los tiempos). ", leftSide + 250, topSide + 200, 250, 100, "fonts\\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
 

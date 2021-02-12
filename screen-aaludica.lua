@@ -35,12 +35,12 @@ function scene:create( event )
     fondoBlanco.anchorX = 0
     fondoBlanco.anchorY = 0
     sceneGroup:insert( fondoBlanco )
-    local logoAAImage = display.newImage( "Images/logoAAL.jpg" )
+    local logoAAImage = display.newImage( "Images/aa_full_logo.jpg" )
     logoAAImage.x = display.contentWidth / 2
     logoAAImage.y = display.contentHeight / 2
     utils.fitImage(logoAAImage, display.contentWidth, display.contentHeight, false)
     sceneGroup:insert( logoAAImage )
-    local txtActualizando = display.newText( "Juegos educativos",  centerX, centerY + 70, "fonts\FjallaOne-Regular.ttf", 14 )
+    local txtActualizando = display.newText( "Juegos educativos",  centerX, centerY + 70, "fonts\\FjallaOne-Regular.ttf", 14 )
     txtActualizando:setFillColor( 0, 0, 0 )
     sceneGroup:insert( txtActualizando )
 

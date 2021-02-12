@@ -155,7 +155,7 @@ local sceneGroup = self.view
   -- Mute option
   chkSonido = widget.newSwitch({ left = leftSide + 30, top = 200, style="checkbox", id = "Checkbox", initialSwitchState =composer.getVariable("enableSound"), onPress = onSwitchPress, sheet = soundSheet, frameOff = 2, frameOn = 1 })
   sceneGroup:insert( chkSonido )
-  local txtSonido = display.newText(sceneGroup, "Con sonido" , leftSide + 65 ,255, 150, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtSonido = display.newText(sceneGroup, "Con sonido" , leftSide + 65 ,255, 150, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtSonido.anchorX = 0
   txtSonido.anchorY = 0
   txtSonido.x = leftSide + 70
@@ -166,7 +166,7 @@ local sceneGroup = self.view
   -- Confirm Placement option
   chkConfirmPlacement = widget.newSwitch({ left = leftSide + 30, top = 250, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("confirmPlacement"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkConfirmPlacement )
-  local txtConfirmPlacement = display.newText(sceneGroup, "Colocar con dos toques" , leftSide + 65 ,255, 150, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtConfirmPlacement = display.newText(sceneGroup, "Colocar con dos toques" , leftSide + 65 ,255, 150, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtConfirmPlacement.anchorX = 0
   txtConfirmPlacement.anchorY = 0
   txtConfirmPlacement.x = leftSide + 70
@@ -176,7 +176,7 @@ local sceneGroup = self.view
 
   chkVol1 =  widget.newSwitch({ left = leftSide + 50, top = 120, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen1"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol1 )
-  local txtVol1 = display.newText(sceneGroup, "Vol 1: Gobiernos y Conflictos" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVol1 = display.newText(sceneGroup, "Vol 1: Gobiernos y Conflictos" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol1.anchorX = 0
   txtVol1.anchorY = 0
   txtVol1.x = leftSide + 100
@@ -184,7 +184,7 @@ local sceneGroup = self.view
 
   chkVol2 =  widget.newSwitch({ left = leftSide + 320, top = 120, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen2"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol2 )
-  local txtVol2 = display.newText(sceneGroup, "Vol 2: Economía y Sociedad" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVol2 = display.newText(sceneGroup, "Vol 2: Economía y Sociedad" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol2.anchorX = 0
   txtVol2.anchorY = 0
   txtVol2.x = leftSide + 370
@@ -192,7 +192,7 @@ local sceneGroup = self.view
 
   chkVol3 =  widget.newSwitch({ left = leftSide + 50, top = 170, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen3"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol3 )
-  local txtVol3 = display.newText(sceneGroup, "Vol 3: Ciencia y Cultura" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVol3 = display.newText(sceneGroup, "Vol 3: Ciencia y Cultura" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol3.anchorX = 0
   txtVol3.anchorY = 0
   txtVol3.x = leftSide + 100
@@ -200,7 +200,7 @@ local sceneGroup = self.view
 
   chkVol4 =  widget.newSwitch({ left = leftSide + 320, top = 170, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen4"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol4 )
-  local txtVol4 = display.newText(sceneGroup, "Vol 4: Cambalache" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVol4 = display.newText(sceneGroup, "Vol 4: Cambalache" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol4.anchorX = 0
   txtVol4.anchorY = 0
   txtVol4.x = leftSide + 370
@@ -208,7 +208,7 @@ local sceneGroup = self.view
 
   chkVol5 =  widget.newSwitch({ left = leftSide + 50, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen5"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol5 )
-  local txtVol5 = display.newText(sceneGroup, "Vol 5: Deportes" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVol5 = display.newText(sceneGroup, "Vol 5: Deportes" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol5.anchorX = 0
   txtVol5.anchorY = 0
   txtVol5.x = leftSide + 100
@@ -216,7 +216,7 @@ local sceneGroup = self.view
 
   chkVolX =  widget.newSwitch({ left = leftSide + 320, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumenX"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVolX )
-  local txtVolX = display.newText(sceneGroup, "Vol X: Inéditas" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+  local txtVolX = display.newText(sceneGroup, "Vol X: Inéditas" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVolX.anchorX = 0
   txtVolX.anchorY = 0
   txtVolX.x = leftSide + 370

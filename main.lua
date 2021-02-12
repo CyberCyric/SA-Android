@@ -46,8 +46,8 @@ local function startGame()
 	composer.setVariable( "isRankedGame", false)
 	composer.setVariable( "timelineIndex", 1) -- Pointer to center card on 5-card displayed timeline
 
-    timer.performWithDelay(1000, function() composer.gotoScene("screen-aaludica"); end)
-    
+   --  timer.performWithDelay(1000, function() composer.gotoScene("screen-aaludica"); end)
+   composer.gotoScene("screen-menu");
 end
 
 -- start --

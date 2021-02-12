@@ -77,7 +77,7 @@ function scene:create( event )
     lbOpciones.x = rightSide - 20
     lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText( sceneGroup,"Contacto", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
+    texto1 = display.newText( sceneGroup,"Contacto", rightSide - 250, 120, 250, 100, "fonts\\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
 

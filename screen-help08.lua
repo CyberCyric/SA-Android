@@ -76,10 +76,10 @@ function scene:create( event )
      lbOpciones.x = rightSide - 20
      lbOpciones.y = topSide + 20      
 
-    texto1 = display.newText(sceneGroup, "Opciones", rightSide - 250, 120, 250, 100, "fonts\georgia.ttf", 24 )
+    texto1 = display.newText(sceneGroup, "Opciones", rightSide - 250, 120, 250, 100, "fonts\\georgia.ttf", 24 )
     texto1.anchorX = 0
     texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Las opciones del juego permiten elegir si se juega con o sin sonido y si es necesario tocar una o dos veces los círculos en la línea de tiempo para colocar la carta, para reconfirmar la posición.", leftSide + 160, topSide + 280, 350, 200, "fonts\georgia.ttf", 11 )
+    texto3 = display.newText(sceneGroup, "Las opciones del juego permiten elegir si se juega con o sin sonido y si es necesario tocar una o dos veces los círculos en la línea de tiempo para colocar la carta, para reconfirmar la posición.", leftSide + 160, topSide + 280, 350, 200, "fonts\\georgia.ttf", 11 )
     texto3.anchorX = 0
     texto3:setFillColor( 1, 1, 1 )
 

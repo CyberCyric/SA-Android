@@ -19,7 +19,7 @@ local scene = composer.newScene()
  
 local function handleButtonEvent( event )
 
-    if ( event.target.id == 'startRankedGame') then
+    if ( event.target.id == 'butStartTimedGame') then
         composer.setVariable("isRankedGame", true)
     else
         composer.setVariable("isRankedGame", false)
@@ -39,7 +39,7 @@ function scene:create( event )
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
 
-    local backgroundImage = display.newImage(sceneGroup, "Images/box.png" )
+    local backgroundImage = display.newImage(sceneGroup, "Images/background_light.png" )
     backgroundImage.anchorX = 0.5
     backgroundImage.anchorY = 0.5
     backgroundImage.x = centerX
@@ -47,53 +47,41 @@ function scene:create( event )
     backgroundImage.height = totalHeight - 100
     backgroundImage.width = totalWidth - 100
 
-    local lbModoJuego = display.newText(" Elegí el modo de juego:", leftSide + 250, 100, 350, 0, "fonts\FjallaOne-Regular.ttf", 22 )
-    lbModoJuego:setFillColor( 0, 0, 0 ) 
-    sceneGroup:insert( lbModoJuego )   
+    local separador = display.newImage(sceneGroup, "Images/separador_v.png")
+    separador.anchorX = 0.5
+    separador.anchorY = 0.5
+    separador.x = centerX
+    separador.y = centerY
+    separador.height = backgroundImage.height * 0.8
+    separador.width = 5
 
     local butStartCasualGame = widget.newButton({ 
         id = "startCasualGame",
-        width = 150,
-        height = 40,
-        label = "Casual",
-        font = "fonts\FjallaOne-Regular.ttf",
-        fontSize = 24,
+        defaultFile = "Images/btn_modo_casual.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butStartCasualGame.x = leftSide+140
-    butStartCasualGame.y = 130
+    butStartCasualGame.x = backgroundImage.width / 4
+    butStartCasualGame.y = backgroundImage.y 
     butStartCasualGame.anchorX = 0.5
-    butStartCasualGame.anchorY = 0
+    butStartCasualGame.anchorY = 0.5
+    butStartCasualGame.width = 160
+    butStartCasualGame.height = 122
     sceneGroup:insert( butStartCasualGame )
 
-    local txtCasualGame = display.newText( "Tranquilo. Relajado. Sin presiones.", leftSide + 220, 140, 350, 0, "fonts\georgia.ttf", 16 )
-    txtCasualGame.anchorX = 0
-    txtCasualGame.anchorY = 0
-    txtCasualGame:setFillColor( 0.2, 0.2, 0.2 )
-    sceneGroup:insert( txtCasualGame )
-
-    local butStartRankedGame = widget.newButton({ 
-        id = "startRankedGame",
-        width = 150,
-        height = 40,
-        label = "Contra reloj",
-        font = "fonts\FjallaOne-Regular.ttf",
-        fontSize = 24,        
+    local butStartTimedGame = widget.newButton({ 
+        id = "startTimedGame",
+        defaultFile = "Images/btn_modo_reloj.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butStartRankedGame.x = leftSide+140
-    butStartRankedGame.y = 190
-    butStartRankedGame.anchorX = 0.5
-    butStartRankedGame.anchorY = 0
-    sceneGroup:insert( butStartRankedGame )
-
-    local txtRankedGame = display.newText( "¡Tenés 15 segundos para ubicar cada carta! Los mejores resultados van al Ranking global.", leftSide + 220, 190, 300, 0, "fonts\georgia.ttf", 16 )
-    txtRankedGame.anchorX = 0
-    txtRankedGame.anchorY = 0
-    txtRankedGame:setFillColor( 0.2, 0.2, 0.2 )
-    sceneGroup:insert( txtRankedGame )
+    butStartTimedGame.x = backgroundImage.width * 3 / 4
+    butStartTimedGame.y = backgroundImage.y 
+    butStartTimedGame.anchorX = 0.5
+    butStartTimedGame.anchorY = 0.5
+    butStartTimedGame.width = 160
+    butStartTimedGame.height = 122
+    sceneGroup:insert( butStartTimedGame )
  
  end
  

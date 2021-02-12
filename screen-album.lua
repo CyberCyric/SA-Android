@@ -224,7 +224,7 @@ function scene:create( event )
     butVolX.anchorX = 0.5
     butVolX.anchorY = 0
     sceneGroup:insert( butVolX )
-    local txtVolX = display.newText(sceneGroup, "Vol X" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVolX = display.newText(sceneGroup, "Vol X" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVolX.anchorX = 0
     txtVolX.anchorY = 0
     txtVolX.x = rightSide - 74
@@ -245,7 +245,7 @@ function scene:create( event )
     butVol1.anchorX = 0.5
     butVol1.anchorY = 0
     sceneGroup:insert( butVol1 )
-    local txtVol1 = display.newText(sceneGroup, "Vol 1" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVol1 = display.newText(sceneGroup, "Vol 1" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVol1.anchorX = 0
     txtVol1.anchorY = 0
     txtVol1.x = rightSide - 399
@@ -266,7 +266,7 @@ function scene:create( event )
     butVol2.anchorX = 0.5
     butVol2.anchorY = 0
     sceneGroup:insert( butVol2 )
-    local txtVol2 = display.newText(sceneGroup, "Vol 2" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVol2 = display.newText(sceneGroup, "Vol 2" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVol2.anchorX = 0
     txtVol2.anchorY = 0
     txtVol2.x = rightSide - 334
@@ -287,7 +287,7 @@ function scene:create( event )
     butVol3.anchorX = 0.5
     butVol3.anchorY = 0
     sceneGroup:insert( butVol3 )
-    local txtVol3 = display.newText(sceneGroup, "Vol 3" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVol3 = display.newText(sceneGroup, "Vol 3" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVol3.anchorX = 0
     txtVol3.anchorY = 0
     txtVol3.x = rightSide - 269
@@ -308,7 +308,7 @@ function scene:create( event )
     butVol4.anchorX = 0.5
     butVol4.anchorY = 0
     sceneGroup:insert( butVol4 )
-    local txtVol4 = display.newText(sceneGroup, "Vol 4" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVol4 = display.newText(sceneGroup, "Vol 4" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVol4.anchorX = 0
     txtVol4.anchorY = 0
     txtVol4.x = rightSide - 204
@@ -329,7 +329,7 @@ function scene:create( event )
     butVol5.anchorX = 0.5
     butVol5.anchorY = 0
     sceneGroup:insert( butVol5 )
-    local txtVol5 = display.newText(sceneGroup, "Vol 5" , leftSide + 165 ,255, 250, 170,"fonts\FjallaOne-Regular.ttf", 16, center )
+    local txtVol5 = display.newText(sceneGroup, "Vol 5" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVol5.anchorX = 0
     txtVol5.anchorY = 0
     txtVol5.x = rightSide - 139

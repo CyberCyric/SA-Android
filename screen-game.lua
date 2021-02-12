@@ -768,7 +768,7 @@ local function prepareTableau()
 
     debugTableauVisibilityFlag = false
 
-    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 15, "fonts\FjallaOne-Regular.ttf", 24 )
+    clockText = display.newText( "00:"..MAX_SECONDS_TIMER, rightSide - 75, 15, "fonts\\FjallaOne-Regular.ttf", 24 )
     clockText:setFillColor( 1, 1, 1 )
     clockText.isVisible = false
     activeCardGroup:insert( clockText )
@@ -791,7 +791,7 @@ local function prepareTableau()
                 x = centerX,
                 y = topSide + 50,
                 width = totalWidth /2,
-                font = "fonts\FjallaOne-Regular.ttf",
+                font = "fonts\\FjallaOne-Regular.ttf",
                 fontSize = 22
             }
     boxGameOverText = display.newText( options1 )
@@ -833,7 +833,7 @@ local function prepareTableau()
                 x = leftSide + 100,
                 y = topSide + 140,
                 width = totalWidth /2,
-                font = "fonts\FjallaOne-Regular.ttf",
+                font = "fonts\\FjallaOne-Regular.ttf",
                 fontSize = 22
             }
     boxGameOverUnlockedText = display.newText( options3 )
@@ -847,7 +847,7 @@ local function prepareTableau()
                 x = leftSide + 100,
                 y = topSide + 170,
                 width = totalWidth - 80,
-                font = "fonts\FjallaOne-Regular.ttf",
+                font = "fonts\\FjallaOne-Regular.ttf",
                 fontSize = 14
             }
     boxGameOverUnlockedSubtext = display.newText( options4 )
@@ -866,7 +866,7 @@ local function prepareTableau()
                 x = centerX,
                 y = topSide + 140,
                 width = totalWidth - 80,
-                font = "fonts\FjallaOne-Regular.ttf",
+                font = "fonts\\FjallaOne-Regular.ttf",
                 fontSize = 11,
                 align = 'right'
             }
@@ -893,7 +893,7 @@ local function prepareTableau()
     lbAction.x = leftSide + logoSAImg.width + 10
     lbAction.y = topSide + 30
 
-    activeCardTitle = display.newText(activeCardGroup, "Title Title Title" , leftSide +20 ,topSide + 100, display.contentWidth * 0.85, 70,"fonts\FjallaOne-Regular.ttf", 18, center )
+    activeCardTitle = display.newText(activeCardGroup, "Title Title Title" , leftSide +20 ,topSide + 100, display.contentWidth * 0.85, 70,"fonts\\FjallaOne-Regular.ttf", 18, center )
     activeCardTitle.anchorX = 0
     activeCardTitle:setFillColor( 1, 1, 1 )
 

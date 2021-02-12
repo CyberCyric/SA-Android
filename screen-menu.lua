@@ -58,40 +58,43 @@ function scene:create( event )
     Runtime:removeEventListener( "key", globalEventListener )
 
     -- Code here runs when the scene is first created but has not yet appeared on screen
-    local backgroundImage = display.newImage(sceneGroup, "Images/background.jpg" )
+    local backgroundImage = display.newImage(sceneGroup, "Images/background.png" )
     backgroundImage.anchorX = 0
     backgroundImage.anchorY = 0
     backgroundImage.x = leftSide
     backgroundImage.y = topSide
-    --utils.fitImage(backgroundImage, display.contentWidth /2, display.contentHeight /2, false)
+    utils.fitImage(backgroundImage, totalWidth, totalHeight, false)
 
-    local logoImage = display.newImage(sceneGroup, "Images/logoSA-lg.png" )
+    local logoImage = display.newImage(sceneGroup, "Images/sa_logo.png" )
     logoImage.anchorX = 0
     logoImage.anchorY  = 0
-    logoImage.x = leftSide+10
-    logoImage.y = topSide+10
-    utils.fitImage(logoImage, 200 , 133 , false)
+    logoImage.x = leftSide+27
+    logoImage.y = topSide+12.5
+    logoImage.width = 142.5
+    logoImage.height = 95
+
+    local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
+    logoAAImage.anchorX = 0
+    logoAAImage.anchorY  = 0
+    logoAAImage.x = utils.perc( 80, display.contentWidth)
+    logoAAImage.y = utils.perc( 55, display.contentHeight)
+    logoAAImage.width = 67.5
+    logoAAImage.height = 53
 
     local txtMenu = display.newText( "Sucesos Argentinos es un juego de cartas donde se pone a prueba tu conocimiento, organizando una cadena en orden cronológico con varios hitos de la historia argentina. \n\n En esta versión digital podés autodesafiarte a armar la línea de tiempo más extensa que puedas.", 
-        220, 20, totalWidth / 2, 200, "fonts\georgia.ttf", 12 )
+        220, 20, totalWidth / 2, 200, "fonts\\georgia.ttf", 12 )
     txtMenu:setFillColor( 1, 1, 1 )
     txtMenu.anchorX = 0
     txtMenu.anchorY = 0
     sceneGroup:insert( txtMenu )  
 
-    local cartas = display.newImage(sceneGroup, "Images/cartas.png" )
+    local cartas = display.newImage(sceneGroup, "Images/sa_volumenes.png" )
     cartas.anchorX = 0
     cartas.anchorY  = 0
-    cartas.x = leftSide + 240
-    cartas.y = topSide + 170
-    utils.fitImage(cartas, 170 , 150 , false)    
-
-    local cajaSucesos = display.newImage(sceneGroup, "Images/caja-sucesos.png" )
-    cajaSucesos.anchorX = 0
-    cajaSucesos.anchorY  = 0
-    cajaSucesos.x = rightSide - 180
-    cajaSucesos.y = topSide + 140
-    utils.fitImage(cajaSucesos, 280 , 120 , false)
+    cartas.x = 200
+    cartas.y = 150  
+    cartas.width = 242
+    cartas.height = 161
 
     local txtAALudicaOptions = 
     {
@@ -100,7 +103,7 @@ function scene:create( event )
         y = 250, 
         width = 110, 
         height = 200, 
-        font = "fonts\georgia.ttf", 
+        font = "fonts\\georgia.ttf", 
         fontSize = 10, 
         align = "right"
     }
@@ -113,57 +116,55 @@ function scene:create( event )
 -- Main Menu
     local butShowGameModes = widget.newButton({ 
         id = "startGame",
-        width = 140,
-        height = 50,
-        defaultFile = "Images/boton-jugar.png",
-        overFile = "Images/boton-jugar-on.png",
+        width = 100,
+        height = 33,
+        defaultFile = "Images/btn_jugar.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
     butShowGameModes.x = leftSide+50
-    butShowGameModes.y = 110
+    butShowGameModes.y = 122.5
     butShowGameModes.anchorX = 0
     butShowGameModes.anchorY = 0
     sceneGroup:insert( butShowGameModes )
 
  local butCartas = widget.newButton({  
         id = "album",  
-        width = 140,
-        height = 50,
-        defaultFile = "Images/boton-album.png",
-        overFile = "Images/boton-album-on.png",
+        width = 100,
+        height = 33,
+        defaultFile = "Images/btn_cartas.png",
         onEvent = handleButtonEvent
     })
     -- Center the button
     butCartas.x = leftSide+50
-    butCartas.y = 160
+    butCartas.y = 166
     butCartas.anchorX = 0
     butCartas.anchorY = 0
     sceneGroup:insert( butCartas )
 
     local butOptions = widget.newButton({   
         id = "gameOptions", 
-        width = 140,
-        height = 50,
-        defaultFile = "Images/boton-opciones.png",
+        width = 100,
+        height = 33,
+        defaultFile = "Images/btn_opciones.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
     butOptions.x = leftSide+50
-    butOptions.y = 210
+    butOptions.y = 208
     butOptions.anchorX = 0
     butOptions.anchorY = 0
     sceneGroup:insert( butOptions )
 
     local butHelp = widget.newButton({   
         id = "ayuda", 
-        width = 140,
-        height = 50,        
-        defaultFile = "Images/boton-ayuda.png",
+        width = 24,
+        height = 24,        
+        defaultFile = "Images/btn_ayuda.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butHelp.x = leftSide+50
+    butHelp.x = leftSide + 90
     butHelp.y = 260
     butHelp.anchorX = 0
     butHelp.anchorY = 0
@@ -174,8 +175,7 @@ function scene:create( event )
         id = "AAL", 
         width = 150,
         height = 32,
-        defaultFile = "Images/boton-aaludica.png",
-        overFile = "Images/boton-aaludica.png",
+        defaultFile = "Images/btn_visitanos.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
