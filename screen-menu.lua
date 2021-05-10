@@ -71,10 +71,10 @@ function scene:create( event )
     local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
     logoAAImage.anchorX = 0
     logoAAImage.anchorY  = 0
-    logoAAImage.x = rightSide - 80
-    logoAAImage.y = bottomSide - 50
-    logoAAImage.width = 50
-    logoAAImage.height = 40
+    logoAAImage.x = rightSide - 70
+    logoAAImage.y = bottomSide - 35
+    logoAAImage.width = 35
+    logoAAImage.height = 28
 
     local txtMenu = display.newText( "Sucesos Argentinos es un juego de cartas donde se pone a prueba tu conocimiento, organizando una cadena en orden cronológico con varios hitos de la historia argentina. \n\n En esta versión digital podés autodesafiarte a armar la línea de tiempo más extensa que puedas.", 
         220, 20, totalWidth / 2, 200, "fonts\\georgia.ttf", 14 )

@@ -55,7 +55,7 @@ function scene:create( event )
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
     composer.removeScene( "screen-menu" )
-    local backgroundImage = display.newImage(sceneGroup, "Images/background.jpg" )
+    local backgroundImage = display.newImage(sceneGroup, "Images/background.png" )
     backgroundImage.anchorX = 0.5
     backgroundImage.anchorY = 0.5
     backgroundImage.x = centerX
@@ -63,51 +63,67 @@ function scene:create( event )
     backgroundImage.height = totalHeight
     backgroundImage.width = totalWidth  
 
-    local logoImage = display.newImage(sceneGroup, "Images/logoSA-lg.png" )
+    local logoImage = display.newImage(sceneGroup, "Images/sa_logo_small.png" )
     logoImage.anchorX = 0
     logoImage.anchorY  = 0
-    logoImage.x = 10
-    logoImage.y = 10
-    utils.fitImage(logoImage, 200 , 133 , false)   
+    logoImage.x = leftSide + 30
+    logoImage.y = topSide + 10
+    logoImage.height = 50
+    logoImage.width = 50
     logoImage:addEventListener("tap", gotoMenu)
 
-     lbOpciones = display.newImageRect(sceneGroup, "Images/lbAyuda.png", 380,  50 )
-     utils.fitImage(lbOpciones, 200, 90, false)
-     lbOpciones.anchorX = 1
+    local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
+    logoAAImage.anchorX = 0
+    logoAAImage.anchorY  = 0
+    logoAAImage.x = rightSide - 70
+    logoAAImage.y = bottomSide - 35
+    logoAAImage.width = 35
+    logoAAImage.height = 28
+
+     lbOpciones = display.newImageRect(sceneGroup, "Images/lbAyuda.png", 60,  27 )
+     lbOpciones.anchorX = 0.5
      lbOpciones.anchorY = 0
-     lbOpciones.x = rightSide - 20
-     lbOpciones.y = topSide + 20      
+     lbOpciones.x = leftSide + 120
+     lbOpciones.y = topSide + 20   
+     
+     local arrowLeft = display.newImage(sceneGroup, "Images/arrowLeft.png" )
+     arrowLeft.anchorX = 0
+     arrowLeft.anchorY  = 0
+     arrowLeft.x = rightSide - 85
+     arrowLeft.y = topSide + 28
+     arrowLeft.height = 15
+     arrowLeft.width = 15
+     arrowLeft:addEventListener("tap", arrowLeftHandler)   
+     
+     local arrowRight = display.newImage(sceneGroup, "Images/arrowRight.png" )
+     arrowRight.anchorX = 0
+     arrowRight.anchorY  = 0
+     arrowRight.x = rightSide - 55
+     arrowRight.y = topSide + 28
+     arrowRight.height = 15
+     arrowRight.width = 15
+     arrowRight:addEventListener("tap", arrowRightHandler)      
 
-    texto1 = display.newText(sceneGroup, "¿Cómo se juega?", rightSide - 250, 120, 250, 100, "fonts\\georgia.ttf", 24 )
-    texto1.anchorX = 0
-    texto1:setFillColor( 1, 1, 1 )
-    texto3 = display.newText(sceneGroup, "Al hacer click en toca aquí! tu carta inicial se ubica en el centro de tu línea de tiempo. A partir de ahora, vas a ir recibiendo nuevas cartas que tenés que ir colocando en su lugar correcto.", leftSide + 30, topSide + 140, 250, 100, "fonts\\georgia.ttf", 11 )
-    texto3.anchorX = 0
-    texto3.anchorY  = 0
-    texto3:setFillColor( 1, 1, 1 )
+     texto1 = display.newText(sceneGroup, "Las cartas", 0, 0, 600, 100, "fonts\\georgia.ttf", 24 )
+     texto1.x = leftSide + 50
+     texto1.y = topSide + 120
+     texto1.anchorX = 0
+     texto1:setFillColor( 1, 1, 1 )
+ 
+     texto2 = display.newText(sceneGroup, "Esta versión digital incluye las mismas cartas que están publicadas en los Volúmenes 1 ('Gobiernos y Conflictos'), 2 ('Economía y Sociedad'), 3 ('Ciencia y Cultura') y 4 ('Cambalache') del juego de mesa Sucesos Argentinos.", 0, 0, totalWidth - 80, 100, "fonts\\georgia.ttf", 12 )
+     texto2.anchorX = 0    
+     texto2.anchorY  = 0
+     texto2.x = leftSide + 50
+     texto2.y = topSide + 120
+     texto2:setFillColor( 1, 1, 1 )
 
-    local imgTelefono = display.newImage(sceneGroup, "Images/telefono.png" )
-    imgTelefono.anchorX = 0
-    imgTelefono.anchorY  = 0
-    imgTelefono.x = rightSide - 250
-    imgTelefono.y = topSide + 140
-    utils.fitImage(imgTelefono, 280 , 120 , false)
+     texto3 = display.newText(sceneGroup, "Además, se incluye un conjunto de Cartas Inéditas, exclusivas para esta app. ¡Pero no es tán fácil! Todas las Cartas Inéditas comienzan bloqueadas.\n\n Cada vez que terminas una partida, hay una chance de que puedas desbloquear una Carta Inédita al azar, que se va a agregar a tu colección. Cuanto más larga es la línea de tiempo que conseguís armar, más chances tenés de desbloquear una Carta Inédita.", 0, 0, totalWidth - 80, 100, "fonts\\georgia.ttf", 12 )
+     texto3.anchorX = 0    
+     texto3.anchorY  = 0
+     texto3.x = leftSide + 50
+     texto3.y = topSide + 200
+     texto3:setFillColor( 1, 1, 1 )
 
-    local arrowRight = display.newImage(sceneGroup, "Images/arrowRight.png" )
-    arrowRight.anchorX = 0
-    arrowRight.anchorY  = 0
-    arrowRight.x = rightSide - 45
-    arrowRight.y = bottomSide - 45
-    utils.fitImage(arrowRight, 40 , 40 , false)   
-    arrowRight:addEventListener("tap", arrowRightHandler)
-
-    local arrowLeft = display.newImage(sceneGroup, "Images/arrowLeft.png" )
-    arrowLeft.anchorX = 0
-    arrowLeft.anchorY  = 0
-    arrowLeft.x = leftSide + 05
-    arrowLeft.y = bottomSide - 45
-    utils.fitImage(arrowLeft, 40 , 40 , false)   
-    arrowLeft:addEventListener("tap", arrowLeftHandler)       
 end
  
 -- show()

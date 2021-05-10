@@ -1017,7 +1017,7 @@ local function prepareTableau()
   tableauArrowText0 = display.newText(timelineGroup, 'A',( totalWidth * 6/12 ) + leftSide, display.actualContentHeight-65,  native.systemFont, 16);
   tableauArrowText0:setFillColor( 0.58, 0.52, 0.4 )
   
-  tableauTooltip0 = display.newText(timelineGroup, '¡Tocá aquí!',( totalWidth * 6/12 ) + leftSide, display.actualContentHeight-90,  native.systemFont, 14);
+  tableauTooltip0 = display.newText(timelineGroup, '¡Comenzar!',( totalWidth * 6/12 ) + leftSide, display.actualContentHeight-90,  native.systemFont, 14);
   tableauTooltip0:setFillColor(0.87, 0.75, 0.59)
 
   tableauArrow1 = display.newCircle( timelineGroup, ( totalWidth * 3/12 ) + leftSide , display.actualContentHeight-65, 15 )
