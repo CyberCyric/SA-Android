@@ -32,9 +32,6 @@ local function handleButtonEvent( event )
         }
         composer.showOverlay( "screen-gameModes", options )
     end
-    if (id == "ranking") then
-        composer.gotoScene('screen-leaderboards')
-    end
     if (id == "gameOptions") then
         composer.gotoScene('screen-options')
     end
@@ -43,9 +40,6 @@ local function handleButtonEvent( event )
     end
     if (id == "ayuda") then
         composer.gotoScene('screen-help01')
-    end
-    if (id == 'AAL') then
-        system.openURL( "http://www.aaludica.com.ar" ) 
     end
     
 end
@@ -63,67 +57,61 @@ function scene:create( event )
     backgroundImage.anchorY = 0
     backgroundImage.x = leftSide
     backgroundImage.y = topSide
-    utils.fitImage(backgroundImage, totalWidth, totalHeight, false)
+    backgroundImage.width = totalWidth
+    backgroundImage.height = totalHeight
 
     local logoImage = display.newImage(sceneGroup, "Images/sa_logo.png" )
     logoImage.anchorX = 0
     logoImage.anchorY  = 0
-    logoImage.x = leftSide+27
+    logoImage.x = leftSide+70
     logoImage.y = topSide+12.5
-    logoImage.width = 142.5
-    logoImage.height = 95
+    logoImage.width = 180
+    logoImage.height = 100
 
     local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
     logoAAImage.anchorX = 0
     logoAAImage.anchorY  = 0
-    logoAAImage.x = utils.perc( 80, display.contentWidth)
-    logoAAImage.y = utils.perc( 55, display.contentHeight)
-    logoAAImage.width = 67.5
-    logoAAImage.height = 53
+    logoAAImage.x = rightSide - 80
+    logoAAImage.y = bottomSide - 50
+    logoAAImage.width = 50
+    logoAAImage.height = 40
 
     local txtMenu = display.newText( "Sucesos Argentinos es un juego de cartas donde se pone a prueba tu conocimiento, organizando una cadena en orden cronológico con varios hitos de la historia argentina. \n\n En esta versión digital podés autodesafiarte a armar la línea de tiempo más extensa que puedas.", 
-        220, 20, totalWidth / 2, 200, "fonts\\georgia.ttf", 12 )
+        220, 20, totalWidth / 2, 200, "fonts\\georgia.ttf", 14 )
     txtMenu:setFillColor( 1, 1, 1 )
+    txtMenu.x = utils.pixToWidth( 820 )
+    txtMenu.y = utils.pixToHeight( 100 )
     txtMenu.anchorX = 0
     txtMenu.anchorY = 0
     sceneGroup:insert( txtMenu )  
 
-    local cartas = display.newImage(sceneGroup, "Images/sa_volumenes.png" )
-    cartas.anchorX = 0
-    cartas.anchorY  = 0
-    cartas.x = 200
-    cartas.y = 150  
-    cartas.width = 242
-    cartas.height = 161
+    local volumenes = display.newImage(sceneGroup, "Images/sa_volumenes.png" )
+    volumenes.anchorX = 0
+    volumenes.anchorY  = 0
+    volumenes.x = 150
+    volumenes.y = topSide + 150
+    volumenes.width = 270
+    volumenes.height = 180 
 
-    local txtAALudicaOptions = 
-    {
-        text = "Podés conseguir la versión de mesa y nuestros otros juegos en:", 
-        x = 395, 
-        y = 250, 
-        width = 110, 
-        height = 200, 
-        font = "fonts\\georgia.ttf", 
-        fontSize = 10, 
-        align = "right"
-    }
-    local txtAALudica = display.newText( txtAALudicaOptions )
-    txtAALudica:setFillColor( 1, 1, 1 )
-    txtAALudica.anchorX = 0
-    txtAALudica.anchorY = 0
-    sceneGroup:insert( txtAALudica )     
+    local linea = display.newImage(sceneGroup, "Images/linea.png" )
+    linea.anchorX = 0
+    linea.anchorY  = 0
+    linea.x = leftSide + 450
+    linea.y = topSide + 190
+    linea.width = 230
+    linea.height = 132
 
 -- Main Menu
     local butShowGameModes = widget.newButton({ 
         id = "startGame",
-        width = 100,
-        height = 33,
+        width = 120,
+        height = 40,
         defaultFile = "Images/btn_jugar.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butShowGameModes.x = leftSide+50
-    butShowGameModes.y = 122.5
+    butShowGameModes.x = leftSide + 90
+    butShowGameModes.y = utils.pixToHeight(490)
     butShowGameModes.anchorX = 0
     butShowGameModes.anchorY = 0
     sceneGroup:insert( butShowGameModes )
@@ -136,8 +124,8 @@ function scene:create( event )
         onEvent = handleButtonEvent
     })
     -- Center the button
-    butCartas.x = leftSide+50
-    butCartas.y = 166
+    butCartas.x = leftSide + 100
+    butCartas.y = 200
     butCartas.anchorX = 0
     butCartas.anchorY = 0
     sceneGroup:insert( butCartas )
@@ -150,43 +138,28 @@ function scene:create( event )
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butOptions.x = leftSide+50
-    butOptions.y = 208
+    butOptions.x =  leftSide + 100
+    butOptions.y = 240
     butOptions.anchorX = 0
     butOptions.anchorY = 0
     sceneGroup:insert( butOptions )
 
     local butHelp = widget.newButton({   
         id = "ayuda", 
-        width = 24,
-        height = 24,        
+        width = 32,
+        height = 32,        
         defaultFile = "Images/btn_ayuda.png",
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butHelp.x = leftSide + 90
-    butHelp.y = 260
+    butHelp.x = leftSide + 135
+    butHelp.y = 280
     butHelp.anchorX = 0
     butHelp.anchorY = 0
     butHelp.isVisible = true
     sceneGroup:insert( butHelp )    
-
-    local butAAL = widget.newButton({   
-        id = "AAL", 
-        width = 150,
-        height = 32,
-        defaultFile = "Images/btn_visitanos.png",
-        onRelease = handleButtonEvent
-    })
-    -- Center the button
-    butAAL.x = rightSide - 160
-    butAAL.y = bottomSide - 35
-    butAAL.anchorX = 0
-    butAAL.anchorY = 0
-    sceneGroup:insert( butAAL )
  
 end
- 
  
 -- show()
 function scene:show( event )

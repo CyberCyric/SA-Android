@@ -44,8 +44,8 @@ function scene:create( event )
     backgroundImage.anchorY = 0.5
     backgroundImage.x = centerX
     backgroundImage.y = centerY
-    backgroundImage.height = totalHeight - 100
-    backgroundImage.width = totalWidth - 100
+    backgroundImage.height = 300
+    backgroundImage.width = 550
 
     local separador = display.newImage(sceneGroup, "Images/separador_v.png")
     separador.anchorX = 0.5
@@ -61,7 +61,7 @@ function scene:create( event )
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butStartCasualGame.x = backgroundImage.width / 4
+    butStartCasualGame.x = 120
     butStartCasualGame.y = backgroundImage.y 
     butStartCasualGame.anchorX = 0.5
     butStartCasualGame.anchorY = 0.5
@@ -75,7 +75,7 @@ function scene:create( event )
         onRelease = handleButtonEvent
     })
     -- Center the button
-    butStartTimedGame.x = backgroundImage.width * 3 / 4
+    butStartTimedGame.x = 375
     butStartTimedGame.y = backgroundImage.y 
     butStartTimedGame.anchorX = 0.5
     butStartTimedGame.anchorY = 0.5

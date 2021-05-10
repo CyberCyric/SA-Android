@@ -13,8 +13,12 @@ M.fitImage = function( displayObject, fitWidth, fitHeight, enlarge )
 	displayObject:scale( scaleFactor, scaleFactor )
 end
 
-M.perc = function( perc, fullPixel )
-	return perc * fullPixel / 100
+M.pixToWidth = function( pix )
+	return pix * display.contentWidth / 1920
+end
+
+M.pixToHeight = function( pix )
+	return pix * display.contentHeight / 1080
 end
 
 M.file_exists = function(filepath)
