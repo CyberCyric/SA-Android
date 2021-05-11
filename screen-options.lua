@@ -117,28 +117,42 @@ local sceneGroup = self.view
     readOptionsFile()
     -- Code here runs when the scene is first created but has not yet appeared on screen
     composer.removeScene( "screen-menu" )
-    local backgroundImage = display.newImage(sceneGroup, "Images/background.jpg" )
+    local backgroundImage = display.newImage(sceneGroup, "Images/background.png" )
     backgroundImage.anchorX = 0.5
     backgroundImage.anchorY = 0.5
     backgroundImage.x = centerX
     backgroundImage.y = centerY
     backgroundImage.height = totalHeight
-    backgroundImage.width = totalWidth    
+    backgroundImage.width = totalWidth  
 
-     lbOpciones = display.newImageRect(sceneGroup, "Images/lbOpciones.png", 380,  50 )
-     utils.fitImage(lbOpciones, 200, 90, false)
-     lbOpciones.anchorX = 1
-     lbOpciones.anchorY = 0
-     lbOpciones.x = rightSide - 20
-     lbOpciones.y = topSide + 20
-
-    local logoImage = display.newImage(sceneGroup, "Images/logoSA-lg.png" )
+    local logoImage = display.newImage(sceneGroup, "Images/sa_logo_small.png" )
     logoImage.anchorX = 0
     logoImage.anchorY  = 0
-    logoImage.x = leftSide+10
-    logoImage.y = topSide+10
-    utils.fitImage(logoImage, 200 , 133 , false)   
-    logoImage:addEventListener("tap", gotoMenu) 
+    logoImage.x = leftSide + 30
+    logoImage.y = topSide + 10
+    logoImage.height = 50
+    logoImage.width = 50
+    logoImage:addEventListener("tap", gotoMenu)
+
+    local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
+    logoAAImage.anchorX = 0
+    logoAAImage.anchorY  = 0
+    logoAAImage.x = rightSide - 70
+    logoAAImage.y = bottomSide - 35
+    logoAAImage.width = 35
+    logoAAImage.height = 28
+
+    lbOpciones = display.newImageRect(sceneGroup, "Images/lbOpciones.png", 150,  23 )
+    lbOpciones.anchorX = 0.5
+    lbOpciones.anchorY = 0
+    lbOpciones.x = leftSide + 160
+    lbOpciones.y = topSide + 20 
+    
+    texto1 = display.newText(sceneGroup, "Elegí con qué volúmenes querés jugar:", 0,0, totalWidth  - 80, 100, "fonts\\georgia.ttf", 20 )
+    texto1:setFillColor( 1, 1, 1 )
+    texto1.anchorX = 0
+    texto1.x = leftSide + 50
+    texto1.y = topSide + 130    
 
     -- Image sheet options and declaration
     local options = {
@@ -174,52 +188,83 @@ local sceneGroup = self.view
   chkConfirmPlacement.isVisible = false
   txtConfirmPlacement.isVisible = false
 
-  chkVol1 =  widget.newSwitch({ left = leftSide + 50, top = 120, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen1"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVol1 =  widget.newSwitch({ left = leftSide + 70, top = 130, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen1"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol1 )
-  local txtVol1 = display.newText(sceneGroup, "Vol 1: Gobiernos y Conflictos" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local imgVol1 = display.newImage(sceneGroup, "Images/sa_vol1.jpg" )
+  imgVol1.anchorX = 0
+  imgVol1.anchorY  = 0
+  imgVol1.x = leftSide + 120
+  imgVol1.y = 125
+  imgVol1.width = 30
+  imgVol1.height = 42
+  local txtVol1 = display.newText(sceneGroup, "Volúmen 1:\nGobiernos y Conflictos" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol1.anchorX = 0
   txtVol1.anchorY = 0
-  txtVol1.x = leftSide + 100
-  txtVol1.y = 130
+  txtVol1.x = leftSide + 160
+  txtVol1.y = 125
 
-  chkVol2 =  widget.newSwitch({ left = leftSide + 320, top = 120, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen2"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVol2 =  widget.newSwitch({ left = leftSide + 340, top = 130, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen2"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol2 )
-  local txtVol2 = display.newText(sceneGroup, "Vol 2: Economía y Sociedad" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local imgVol2 = display.newImage(sceneGroup, "Images/sa_vol2.jpg" )
+  imgVol2.anchorX = 0
+  imgVol2.anchorY  = 0
+  imgVol2.x = leftSide + 390
+  imgVol2.y = 125
+  imgVol2.width = 30
+  imgVol2.height =  42 
+  local txtVol2 = display.newText(sceneGroup, "Volúmen 2:\nEconomía y Sociedad" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol2.anchorX = 0
   txtVol2.anchorY = 0
-  txtVol2.x = leftSide + 370
-  txtVol2.y = 130
+  txtVol2.x = leftSide + 430
+  txtVol2.y = 125
 
-  chkVol3 =  widget.newSwitch({ left = leftSide + 50, top = 170, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen3"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVol3 =  widget.newSwitch({ left = leftSide + 70, top = 180, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen3"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol3 )
-  local txtVol3 = display.newText(sceneGroup, "Vol 3: Ciencia y Cultura" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local imgVol3 = display.newImage(sceneGroup, "Images/sa_vol3.jpg" )
+  imgVol3.anchorX = 0
+  imgVol3.anchorY  = 0
+  imgVol3.x = leftSide + 120
+  imgVol3.y = 175
+  imgVol3.width = 30
+  imgVol3.height = 42  
+  local txtVol3 = display.newText(sceneGroup, "Volúmen 3:\nCiencia y Cultura" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol3.anchorX = 0
   txtVol3.anchorY = 0
-  txtVol3.x = leftSide + 100
-  txtVol3.y = 180
+  txtVol3.x = leftSide + 160
+  txtVol3.y = 175
 
-  chkVol4 =  widget.newSwitch({ left = leftSide + 320, top = 170, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen4"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVol4 =  widget.newSwitch({ left = leftSide + 340, top = 180, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen4"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol4 )
-  local txtVol4 = display.newText(sceneGroup, "Vol 4: Cambalache" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local imgVol4 = display.newImage(sceneGroup, "Images/sa_vol4.jpg" )
+  imgVol4.anchorX = 0
+  imgVol4.anchorY  = 0
+  imgVol4.x = leftSide + 390
+  imgVol4.y = 175
+  imgVol4.width = 30
+  imgVol4.height = 42  
+  local txtVol4 = display.newText(sceneGroup, "Volúmen 4:\nCambalache" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVol4.anchorX = 0
   txtVol4.anchorY = 0
-  txtVol4.x = leftSide + 370
-  txtVol4.y = 180
+  txtVol4.x = leftSide + 430
+  txtVol4.y = 175
 
-  chkVol5 =  widget.newSwitch({ left = leftSide + 50, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen5"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVol5 =  widget.newSwitch({ left = leftSide + 70, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumen5"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVol5 )
-  local txtVol5 = display.newText(sceneGroup, "Vol 5: Deportes" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local txtVol5 = display.newText(sceneGroup, "Volúmen 5:\nDeportes (próximamente)" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  txtVol5:setFillColor( 0.8, 0.8, 0.8 )
   txtVol5.anchorX = 0
   txtVol5.anchorY = 0
-  txtVol5.x = leftSide + 100
-  txtVol5.y = 230
+  txtVol5.x = leftSide + 160
+  txtVol5.y = 215
+  chkVol5.isVisible = false
+  txtVol5.isVisible = false
 
-  chkVolX =  widget.newSwitch({ left = leftSide + 320, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumenX"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
+  chkVolX =  widget.newSwitch({ left = leftSide + 340, top = 220, style="checkbox", id = "Checkbox", initialSwitchState=composer.getVariable("includeVolumenX"), onPress = onSwitchPress, sheet = checkboxSheet, frameOff = 1, frameOn = 2 })
   sceneGroup:insert( chkVolX )
-  local txtVolX = display.newText(sceneGroup, "Vol X: Inéditas" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+  local txtVolX = display.newText(sceneGroup, "Cartas Inéditas" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
   txtVolX.anchorX = 0
   txtVolX.anchorY = 0
-  txtVolX.x = leftSide + 370
+  txtVolX.x = leftSide + 390
   txtVolX.y = 230
 
 end

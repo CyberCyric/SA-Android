@@ -141,7 +141,7 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
     -- if (rnd <= #timeline * 3) then
     if (1 == 1) then
         -- Obtengo una carta Locked al azar y la Unlockeo
-        path = system.pathForFile( "data.db", system.DocumentsDirectory )
+        path = system.pathForFile( "cartas.db", system.DocumentsDirectory )
         db = sqlite3.open( path )
         SQL = "SELECT * FROM cartas WHERE unlocked='N' ORDER BY RANDOM() LIMIT 1"
         i = 0
@@ -162,7 +162,7 @@ local function showGameOverScreen(isDeckEmpty, isTimerEmpty)
             unlockedCard.isVisible = true
             unlockedCardGroup.isVisible = true
 
-            path = system.pathForFile( "data.db", system.DocumentsDirectory )
+            path = system.pathForFile( "cartas.db", system.DocumentsDirectory )
             db = sqlite3.open( path )
             SQL = "UPDATE cartas SET unlocked='Y' WHERE carta_id="..carta.carta_id
             db:exec( SQL )
@@ -660,7 +660,7 @@ end
     local fullDeck = {}
     local cardVolumes = {}
 
-    path = system.pathForFile( "data.db", system.DocumentsDirectory )
+    path = system.pathForFile( "cartas.db", system.DocumentsDirectory )
     local db = sqlite3.open( path )
 
     if (composer.getVariable("includeVolumen1") == true) then table.insert(cardVolumes, "1") end

@@ -34,17 +34,23 @@ function drawCards(volume)
         scCards:removeSelf()
     end
     
-    local options = {
-        verticalScrollDisabled  = true,
-        hideBackground = true,
-        height = 170
-    }
-    scCards = widget.newScrollView( options )
-    scCards.anchorY = 0
-    scCards.y = topSide + 140
+    scCards = widget.newScrollView( {
+        top = 40,
+        left = 0,
+        width = totalWidth,
+        height = totalHeight,
+        scrollWidth = totalWidth,
+        scrollHeight = 380,
+        listener = scrollListener,
+        verticalScrollDisabled= true,
+        hideBackground = true
+    } )
+
+    scCards.y = 300
+    
     sceneGroup:insert(scCards)
 
-    path = system.pathForFile( "data.db", system.DocumentsDirectory )
+    path = system.pathForFile( "cartas.db", system.DocumentsDirectory )
     local db = sqlite3.open( path )
     local SQL = "SELECT * FROM cartas WHERE vol='"..volume.."'"
     print(SQL)
@@ -97,7 +103,7 @@ function drawCards(volume)
             cardImage.strokeWidth = 2
             titulo.text = row.title
         else
-            titulo.text = '?'
+            titulo.text = row.title
         end       
 
         -- scCards:insert( numero ) 
@@ -186,29 +192,46 @@ end
 function scene:create( event )
  
     sceneGroup = self.view
+    sceneGroup.anchorX = 0
     composer.removeScene( "screen-game" )
 
     -- Code here runs when the scene is first created but has not yet appeared on screen
-    local backgroundImage = display.newImage(sceneGroup, "Images/background.jpg" )
-    backgroundImage.anchorX = 0
-    backgroundImage.anchorY = 0
-    backgroundImage.x = leftSide
-    backgroundImage.y = topSide
+    local backgroundImage = display.newImage(sceneGroup, "Images/background.png" )
+    backgroundImage.anchorX = 0.5
+    backgroundImage.anchorY = 0.5
+    backgroundImage.x = centerX
+    backgroundImage.y = centerY
+    backgroundImage.height = totalHeight
+    backgroundImage.width = totalWidth  
 
-     lbOpciones = display.newImageRect(sceneGroup, "Images/lbCartas.png", 380,  50 )
-     utils.fitImage(lbOpciones, 200, 90, false)
-     lbOpciones.anchorX = 1
-     lbOpciones.anchorY = 0
-     lbOpciones.x = rightSide - 20
-     lbOpciones.y = topSide + 20    
-
-    local logoImage = display.newImage(sceneGroup, "Images/logoSA-lg.png" )
+    local logoImage = display.newImage(sceneGroup, "Images/sa_logo_small.png" )
     logoImage.anchorX = 0
     logoImage.anchorY  = 0
-    logoImage.x = leftSide+10
-    logoImage.y = topSide+10
-    utils.fitImage(logoImage, 200 , 133 , false)
-    logoImage:addEventListener("tap", gotoMenu) 
+    logoImage.x = leftSide + 30
+    logoImage.y = topSide + 10
+    logoImage.height = 50
+    logoImage.width = 50
+    logoImage:addEventListener("tap", gotoMenu)
+
+    local logoAAImage = display.newImage(sceneGroup, "Images/aa_logo_sm.png" )
+    logoAAImage.anchorX = 0
+    logoAAImage.anchorY  = 0
+    logoAAImage.x = rightSide - 70
+    logoAAImage.y = bottomSide - 35
+    logoAAImage.width = 35
+    logoAAImage.height = 28
+
+    lbOpciones = display.newImageRect(sceneGroup, "Images/lbCartas.png", 150,  23 )
+    lbOpciones.anchorX = 0.5
+    lbOpciones.anchorY = 0
+    lbOpciones.x = leftSide + 160
+    lbOpciones.y = topSide + 20 
+
+    texto1 = display.newText(sceneGroup, "Ver las cartas de:", 0,0, totalWidth  - 80, 100, "fonts\\georgia.ttf", 20 )
+    texto1:setFillColor( 1, 1, 1 )
+    texto1.anchorX = 0
+    texto1.x = leftSide + 50
+    texto1.y = topSide + 130      
 
     butVolX = widget.newButton({ 
         id = "butVolX",
@@ -224,10 +247,10 @@ function scene:create( event )
     butVolX.anchorX = 0.5
     butVolX.anchorY = 0
     sceneGroup:insert( butVolX )
-    local txtVolX = display.newText(sceneGroup, "Vol X" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
+    local txtVolX = display.newText(sceneGroup, "Inéditas" , leftSide + 165 ,255, 250, 170,"fonts\\FjallaOne-Regular.ttf", 16, center )
     txtVolX.anchorX = 0
     txtVolX.anchorY = 0
-    txtVolX.x = rightSide - 74
+    txtVolX.x = rightSide - 85
     txtVolX.y = topSide + 105
 
     butVol1 = widget.newButton({ 
@@ -334,7 +357,9 @@ function scene:create( event )
     txtVol5.anchorY = 0
     txtVol5.x = rightSide - 139
     txtVol5.y = topSide + 105
-    
+
+    butVol5.isVisible = false
+    txtVol5.isVisible = false
       
 end
  
@@ -343,6 +368,7 @@ end
 function scene:show( event )
  
     local sceneGroup = self.view
+    sceneGroup.anchorX = 0
     local phase = event.phase
  
     if ( phase == "will" ) then
@@ -359,6 +385,7 @@ end
 function scene:hide( event )
  
     local sceneGroup = self.view
+    sceneGroup.anchorX = 0
     local phase = event.phase
  
     if ( phase == "will" ) then
@@ -375,6 +402,7 @@ end
 function scene:destroy( event )
  
     local sceneGroup = self.view
+    sceneGroup.anchorX = 0
     -- Code here runs prior to the removal of scene's view
  
 end

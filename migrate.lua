@@ -36,8 +36,8 @@ M.doMigrate = function()
         io.close( file )
     end
 
-  	-- Open "data.db". If the file doesn't exist, it will be created
-    path = system.pathForFile( "data.db", system.DocumentsDirectory )
+  	-- Open "cartas.db". If the file doesn't exist, it will be created
+    path = system.pathForFile( "cartas.db", system.DocumentsDirectory )
     local db = sqlite3.open( path ) 
     if db then
         SQL = [[CREATE TABLE IF NOT EXISTS cartas(carta_id INTEGER PRIMARY KEY, vol TEXT, image TEXT, title TEXT, year TEXT, text TEXT, unlocked TEXT);]]

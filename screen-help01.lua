@@ -76,10 +76,10 @@ function scene:create( event )
     logoAAImage.width = 35
     logoAAImage.height = 28
 
-     lbOpciones = display.newImageRect(sceneGroup, "Images/lbAyuda.png", 60,  27 )
+     lbOpciones = display.newImageRect(sceneGroup, "Images/lbAyuda.png", 150,  23 )
      lbOpciones.anchorX = 0.5
      lbOpciones.anchorY = 0
-     lbOpciones.x = leftSide + 120
+     lbOpciones.x = leftSide + 160
      lbOpciones.y = topSide + 20      
 
      local arrowRight = display.newImage(sceneGroup, "Images/arrowRight.png" )
